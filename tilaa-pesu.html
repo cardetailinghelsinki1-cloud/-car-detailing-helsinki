@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tilaa pesu · Car Detailing Helsinki</title>
+<meta name="description" content="Tilaa pesu tai pyydä tarjous, me tulemme luoksesi.">
+<meta name="theme-color" content="#0A6CE0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<div class="topbar"><a href="tilaa-pesu.html"><span class="star">★</span> Me tulemme luoksesi · Helsinki, Espoo &amp; Vantaa · <b>Hanki tarjous →</b></a></div>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000212-c433fc4340/logo.cardetailinghelsinki-2.png?ph=7c6f3620a0" alt="Car Detailing Helsinki"><span class="txt">Car Detailing Helsinki<small>Liikkuva autonpesu</small></span></a>
+    <nav class="nav-links" id="navLinks">
+      <a class="link" href="palvelut.html">Palvelut</a>
+      <a class="link" href="kanta-asiakasohjelma.html">Kanta-asiakasohjelma</a>
+      <a class="link" href="arvostelut.html">Arvostelut</a>
+      <a class="link" href="meista.html">Meistä</a>
+      <a class="link" href="faq.html">FAQ</a>
+      <a class="btn btn-primary" href="tilaa-pesu.html">Tilaa pesu</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="tilaa-pesu.html">Hanki tarjous</a>
+      <a class="btn btn-primary" href="tilaa-pesu.html">Tilaa pesu</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Valikko"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<section class="page-hero">
+  <div class="bg" style="background-image:url('https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000264-53cf753cf9/IMG_2600.jpeg?ph=7c6f3620a0')" aria-hidden="true"></div>
+  <div class="wrap inner">
+    <div class="crumb"><a href="index.html">Etusivu</a> / Tilaa pesu</div>
+    <h1>Tilaa pesu</h1>
+    <p class="lead">Kerro autosi malli, sijainti ja toiveesi, niin saat tarkan hinnan ja sopivan ajan.</p>
+  </div>
+</section>
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track">
+    <span class="item">Me tulemme luoksesi<span class="d"></span></span>
+    <span class="item">Sama tekijä joka kerta<span class="d"></span></span>
+    <span class="item">Tyytyväisyystakuu<span class="d"></span></span>
+    <span class="item">Premium-sisäpuhdistus<span class="d"></span></span>
+    <span class="item">★ 5,0 Google-arvostelut<span class="d"></span></span>
+    <span class="item">Joustavat aikataulut<span class="d"></span></span>
+  </div>
+</div>
+<section>
+  <div class="wrap split">
+    <div class="copy">
+      <span class="eyebrow">Yhteydenotto</span>
+      <h2>Lähetä yhteydenottopyyntö</h2>
+      <p>Täytä lomake, niin olemme sinuun yhteydessä mahdollisimman pian tarjouksen ja sopivan ajan kanssa.</p>
+      <form class="form" id="orderForm" style="margin-top:24px">
+        <div class="row2">
+          <div class="field"><label for="nimi">Nimi</label><input id="nimi" name="nimi" type="text" required></div>
+          <div class="field"><label for="puh">Puhelin</label><input id="puh" name="puh" type="tel" required></div>
+        </div>
+        <div class="field"><label for="email">Sähköposti</label><input id="email" name="email" type="email"></div>
+        <div class="row2">
+          <div class="field"><label for="auto">Auton malli</label><input id="auto" name="auto" type="text"></div>
+          <div class="field"><label for="palvelu">Palvelu</label>
+            <select id="palvelu" name="palvelu">
+              <option>Auton sisäpuhdistus</option>
+              <option>Sisä- ja ulkopesu</option>
+              <option>Kanta-asiakasohjelma</option>
+              <option>Lisäpalvelu</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="osoite">Osoite (missä auto pestään)</label><input id="osoite" name="osoite" type="text"></div>
+        <div class="field"><label for="viesti">Lisätiedot</label><textarea id="viesti" name="viesti"></textarea></div>
+        <button class="btn btn-primary" type="submit" style="justify-content:center">Lähetä pyyntö →</button>
+        <p style="font-size:13px;color:var(--muted);margin:0">Lomake avaa sähköpostiohjelmasi valmiilla viestillä. Voit myös soittaa tai laittaa viestiä suoraan.</p>
+      </form>
+    </div>
+    <div>
+      <div class="cta-box">
+        <h2>Soita tai laita viestiä</h2>
+        <p>Vastaamme nopeasti ja ystävällisesti.</p>
+        <div class="cta-row" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px">
+          <a class="btn btn-primary" href="tel:+358442300456">Soita nyt</a>
+          <a class="btn btn-ghost" href="mailto:cardetailing.helsinki1@gmail.com">Sähköposti</a>
+        </div>
+      </div>
+      <div class="contact info" style="display:flex;flex-direction:column;gap:18px;margin-top:24px">
+        <div class="row"><div class="l" style="color:var(--accent)">Soita meille</div><div class="v" style="color:var(--ink)"><a href="tel:+358442300456">+358 44 2300456</a></div></div>
+        <div class="row"><div class="l" style="color:var(--accent)">Sähköposti</div><div class="v" style="color:var(--ink)"><a href="mailto:cardetailing.helsinki1@gmail.com">cardetailing.helsinki1@gmail.com</a></div></div>
+        <div class="row"><div class="l" style="color:var(--accent)">Y-tunnus</div><div class="v" style="color:var(--ink)">3549626-1</div></div>
+        <div class="row"><div class="l" style="color:var(--accent)">Alue</div><div class="v" style="color:var(--ink)">Helsinki · Espoo · Vantaa</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+document.getElementById('orderForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var g=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
+  var body="Nimi: "+g('nimi')+"%0D%0APuhelin: "+g('puh')+"%0D%0ASähköposti: "+g('email')+"%0D%0AAuto: "+g('auto')+"%0D%0APalvelu: "+g('palvelu')+"%0D%0AOsoite: "+g('osoite')+"%0D%0ALisätiedot: "+g('viesti');
+  window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("Tilaus / tarjouspyyntö")+"&body="+body;
+});
+</script>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000212-c433fc4340/logo.cardetailinghelsinki-2.png?ph=7c6f3620a0" alt="Car Detailing Helsinki"><span>Car Detailing Helsinki</span></div>
+        <p>Liikkuva premium-autonpesu pääkaupunkiseudulla. Me tulemme luoksesi.</p>
+      </div>
+      <div><h4>Sivut</h4>
+        <a href="index.html">Etusivu</a><a href="palvelut.html">Palvelut</a>
+        <a href="tilaa-pesu.html">Tilaa pesu</a><a href="meista.html">Meistä</a><a href="faq.html">FAQ</a>
+      </div>
+      <div><h4>Palvelut</h4>
+        <a href="palvelut.html#sisapuhdistus">Auton sisäpuhdistus</a>
+        <a href="palvelut.html#lisapalvelut">Lemmikkien karvojen poisto</a>
+        <a href="palvelut.html#lisapalvelut">Nahkapenkkien hoito</a>
+        <a href="palvelut.html#lisapalvelut">Penkkien tekstiilipesu</a>
+        <a href="palvelut.html#ulkopesu">Auton ulkopesu</a>
+      </div>
+      <div><h4>Yhteys</h4>
+        <a href="tel:+358442300456">+358 44 2300456</a>
+        <a href="mailto:cardetailing.helsinki1@gmail.com">cardetailing.helsinki1@gmail.com</a>
+        <a href="#">Helsinki · Espoo · Vantaa</a>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Car Detailing Helsinki. Kaikki oikeudet pidätetään.</span><span>Y-tunnus 3549626-1</span></div>
+  </div>
+</footer>
+<script src="app.js"></script>
+</body></html>

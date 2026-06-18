@@ -1,0 +1,59 @@
+const menuBtn=document.getElementById('menuBtn'),navLinks=document.getElementById('navLinks');
+menuBtn.addEventListener('click',()=>{menuBtn.classList.toggle('open');navLinks.classList.toggle('open');});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBtn.classList.remove('open');navLinks.classList.remove('open');}));
+
+(function(){const t=document.getElementById('track');if(t)t.innerHTML+=t.innerHTML;})();
+
+document.querySelectorAll('.qa button').forEach(b=>{b.addEventListener('click',()=>{const qa=b.parentElement,a=qa.querySelector('.a'),open=qa.classList.contains('open');document.querySelectorAll('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('.a').style.maxHeight=null;});if(!open){qa.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}});});
+
+const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+if(!reduce){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));}
+else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));}
+
+function animateCount(el){
+  const target=parseFloat(el.dataset.target),dec=parseInt(el.dataset.dec||'0'),dur=1400,t0=performance.now();
+  function step(now){
+    let p=Math.min((now-t0)/dur,1);
+    p=1-Math.pow(1-p,3);
+    const val=target*p;
+    el.textContent=dec?val.toFixed(dec).replace('.',','):Math.round(val).toString();
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=dec?target.toFixed(dec).replace('.',','):Math.round(target).toString();
+  }
+  requestAnimationFrame(step);
+}
+const counters=document.querySelectorAll('.count');
+if(!reduce&&counters.length){
+  const cio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){animateCount(e.target);cio.unobserve(e.target);}});},{threshold:.5});
+  counters.forEach(c=>cio.observe(c));
+}else{counters.forEach(c=>{const d=parseInt(c.dataset.dec||'0');c.textContent=d?parseFloat(c.dataset.target).toFixed(d).replace('.',','):c.dataset.target;});}
+
+/* ===== LISÄANIMAATIOT ===== */
+/* Vierityksen edistymispalkki */
+(function(){
+  var bar=document.createElement('div');bar.className='scrollbar';document.body.appendChild(bar);
+  function upd(){var h=document.documentElement,sc=h.scrollTop||document.body.scrollTop,max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?sc/max*100:0)+'%';}
+  window.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+})();
+
+if(!reduce){
+  /* Kuvien pyyhkäisy-paljastus */
+  document.querySelectorAll('.media').forEach(m=>m.classList.add('anim-img'));
+  const mio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');mio.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.media').forEach(m=>mio.observe(m));
+
+  /* Otsikon aksenttiviiva piirtyy */
+  const hio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('drawn');hio.unobserve(e.target);}});},{threshold:.6});
+  document.querySelectorAll('.sec-head h2').forEach(h=>hio.observe(h));
+
+  /* Split-osioiden teksti liukuu sivusta */
+  document.querySelectorAll('.split').forEach(s=>{
+    const copy=s.querySelector('.copy'),rev=s.classList.contains('rev');
+    if(copy)copy.classList.add('rv',rev?'from-r':'from-l');
+  });
+  const sio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');sio.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.rv').forEach(el=>sio.observe(el));
+}else{
+  document.querySelectorAll('.sec-head h2').forEach(h=>h.classList.add('drawn'));
+}
