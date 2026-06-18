@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Palvelut · Car Detailing Helsinki</title>
-<meta name="description" content="Auton sisäpuhdistus, ulkopesu ja lisäpalvelut, suoraan luoksesi.">
+<meta name="description" content="Auton sisäpuhdistus, ulkopesu, lisäpalvelut ja kanta-asiakasohjelma, suoraan luoksesi.">
 <meta name="theme-color" content="#0A6CE0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,17 @@
   <div class="wrap nav-inner">
     <a class="logo" href="index.html"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000212-c433fc4340/logo.cardetailinghelsinki-2.png?ph=7c6f3620a0" alt="Car Detailing Helsinki"><span class="txt">Car Detailing Helsinki<small>Liikkuva autonpesu</small></span></a>
     <nav class="nav-links" id="navLinks">
-      <a class="link active" href="palvelut.html">Palvelut</a>
-      <a class="link" href="kanta-asiakasohjelma.html">Kanta-asiakasohjelma</a>
-      <a class="link" href="arvostelut.html">Arvostelut</a>
+      <div class="nav-item has-drop">
+        <a class="link active" href="palvelut.html">Palvelut <span class="caret">▾</span></a>
+        <div class="dropdown">
+          <a href="palvelut.html">Palvelumme</a>
+          <a href="kanta-asiakasohjelma.html">Kanta-asiakasohjelma</a>
+          <a href="sisapuhdistus.html">Auton sisäpuhdistus</a>
+          <a href="ulkopesu.html">Auton ulkopesu</a>
+          <a href="lisapalvelut.html">Lisäpalvelut</a>
+        </div>
+      </div>
+      <a class="link" href="tilaa-pesu.html">Tilaa pesu</a>
       <a class="link" href="meista.html">Meistä</a>
       <a class="link" href="faq.html">FAQ</a>
       <a class="btn btn-primary" href="tilaa-pesu.html">Tilaa pesu</a>
@@ -34,92 +42,64 @@
 <section class="page-hero">
   <div class="bg" style="background-image:url('https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000328-d38b0d38b2/IMG_2558%20%281%29.png?ph=7c6f3620a0')" aria-hidden="true"></div>
   <div class="wrap inner">
-    <div class="crumb"><a href="index.html">Etusivu</a> / Palvelut</div>
-    <h1>Palvelut</h1>
-    <p class="lead">Ammattitason auton sisäpuhdistus, ulkopesu ja lisäpalvelut, kätevästi suoraan luoksesi.</p>
+    <div class="crumb"><a href="index.html">Etusivu</a> / Palvelumme</div>
+    <h1>Palvelumme</h1>
+    <p class="lead">Valitse autollesi sopiva palvelu. Tulemme luoksesi ja hoidamme loput, huolella ja hymyssä suin.</p>
   </div>
 </section>
-<div class="marquee" aria-hidden="true">
-  <div class="track" id="track">
-    <span class="item">Me tulemme luoksesi<span class="d"></span></span>
-    <span class="item">Sama tekijä joka kerta<span class="d"></span></span>
-    <span class="item">Tyytyväisyystakuu<span class="d"></span></span>
-    <span class="item">Premium-sisäpuhdistus<span class="d"></span></span>
-    <span class="item">★ 5,0 Google-arvostelut<span class="d"></span></span>
-    <span class="item">Joustavat aikataulut<span class="d"></span></span>
-  </div>
-</div>
-<section id="sisapuhdistus" class="anchor">
-  <div class="wrap split">
-    <div class="copy">
-      <span class="eyebrow">Auton sisäpuhdistus</span>
-      <h2>Ohjaamo raikkaaksi ja puhtaaksi</h2>
-      <p>Puhdistamme pinnat, tekstiilit ja vaikeatkin kohdat huolellisesti, jotta lika, hienojakoinen pöly, suola, lemmikkikarvat ja tunkkaiset hajut saadaan pois. Käytämme turvallisia ja tehokkaita aineita eri materiaaleille, kuten kankaalle, alcantaralle, nahalle ja muoveille, sekä oikeita työmenetelmiä, jotta lopputulos on siisti, tasainen ja pitkäkestoinen.</p>
-      <p>Voit valita kevyen ylläpitopuhdistuksen tai perusteellisen sisäpesun verhoilujen pesuineen. Tavoite on aina sama: raikas, hygieeninen ja viihtyisä matkustamo, jonka arvo säilyy.</p>
-      <a class="btn btn-primary" href="tilaa-pesu.html">Tilaa sisäpuhdistus →</a>
-    </div>
-    <div class="media reveal"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000330-7280b7280d/IMG_2107%20%281%29.png?ph=7c6f3620a0" alt="Auton sisätilat"></div>
-  </div>
-</section>
-<section id="ulkopesu" class="band-dark anchor">
-  <div class="wrap split rev">
-    <div class="media reveal" style="border-color:var(--line-inv)"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000325-52db552db7/IMG_2059.png?ph=7c6f3620a0" alt="Auton ulkopesu"></div>
-    <div class="copy">
-      <span class="eyebrow inv">Auton ulkopesu</span>
-      <h2>Kiiltävä pinta, hellävarainen käsittely</h2>
-      <p class="muted">Tarjoamme myös auton ulkopesua. Pesemme korin, lasit ja vanteet hellävaraisesti oikeilla aineilla, jotta lika lähtee ilman naarmuuntumisriskiä.</p>
-      <p class="muted">Ulkopesu edellyttää, että kiinteistölläsi on siihen soveltuva paikka, esimerkiksi omakotitalon piha. Ulkopesu onnistuu parhaiten kuivalla säällä, mutta kevyt sade ei aina ole este.</p>
-      <a class="btn btn-primary" href="tilaa-pesu.html" style="background:var(--accent-bright,#19C6AB);color:var(--ink)">Kysy ulkopesusta →</a>
-    </div>
-  </div>
-</section>
-<section id="lisapalvelut" class="anchor" style="background:var(--paper-2)">
+<div class="marquee" aria-hidden="true"><div class="track" id="track">
+<span class="item">Me tulemme luoksesi<span class="d"></span></span>
+<span class="item">Sama tekijä joka kerta<span class="d"></span></span>
+<span class="item">Tyytyväisyystakuu<span class="d"></span></span>
+<span class="item">Premium-sisäpuhdistus<span class="d"></span></span>
+<span class="item">★ 5,0 Google-arvostelut<span class="d"></span></span>
+<span class="item">Joustavat aikataulut<span class="d"></span></span>
+</div></div>
+<section>
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Lisäpalvelut</span><h2>Viimeistele lopputulos</h2></div>
-    <div class="reasons">
-      <div class="reason reveal"><div class="num">+</div><h3>Lemmikkien karvojen poisto</h3><p>Poistamme tehokkaasti tekstiileihin tarttuneet lemmikin karvat, jotta matkustamo on jälleen raikas.</p></div>
-      <div class="reason reveal d1"><div class="num">+</div><h3>Nahkapenkkien hoitokäsittely</h3><p>Puhdistamme ja hoidamme nahkapinnat, jotta ne pysyvät pehmeinä, siisteinä ja kestävät pidempään.</p></div>
-      <div class="reason reveal d2"><div class="num">+</div><h3>Penkkien tekstiilipesu</h3><p>Pesemme kangaspenkit tekstiilipesurilla, jolloin pinttynytkin lika ja tahrat irtoavat.</p></div>
+    <div class="sec-head"><span class="eyebrow">Palvelumme</span><h2>Kaikki autosi hoitoon yhdestä paikasta</h2><p>Tarjoamme auton sisä- ja ulkopuolen puhdistuksen sekä lisäpalvelut. Klikkaa palvelua ja lue lisää, tai hanki tarjous suoraan.</p></div>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="pic"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000328-d38b0d38b2/IMG_2558%20%281%29.png?ph=7c6f3620a0" alt="Auton sisäpuhdistus"></div><div class="body"><h3>Auton sisäpuhdistus</h3><div class="from">Alk. 79 €</div><p>Ohjaamo raikkaaksi ja puhtaaksi: pinnat, tekstiilit ja vaikeatkin kohdat huolellisesti.</p><a class="btn btn-primary" href="sisapuhdistus.html">Lue lisää →</a></div></div>
+      <div class="svc reveal d1"><div class="pic"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000049-15c4515c47/IMG-20250614-WA0041.jpeg?ph=7c6f3620a0" alt="Auton ulkopesu"></div><div class="body"><h3>Auton ulkopesu</h3><div class="from">Alk. 49 €</div><p>Hellävarainen käsinpesu, joka takaa viimeistellyn ja kiiltävän lopputuloksen.</p><a class="btn btn-primary" href="ulkopesu.html">Lue lisää →</a></div></div>
+      <div class="svc reveal d2"><div class="pic"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000226-d1adcd1ade/IMG_2024.jpeg?ph=7c6f3620a0" alt="Lisäpalvelut"></div><div class="body"><h3>Lisäpalvelut</h3><div class="from">Alk. 45 €</div><p>Tekstiilipesu, lemmikkien karvojen poisto ja nahkapenkkien hoitokäsittely.</p><a class="btn btn-primary" href="lisapalvelut.html">Lue lisää →</a></div></div>
+      <div class="svc reveal"><div class="pic"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000330-7280b7280d/IMG_2107%20%281%29.png?ph=7c6f3620a0" alt="Kanta-asiakasohjelma"></div><div class="body"><h3>Kanta-asiakasohjelma</h3><div class="from">Säännöllisesti</div><p>Auto edustuskunnossa ympäri vuoden, automaattisesti ja ilman sitoutumista.</p><a class="btn btn-primary" href="kanta-asiakasohjelma.html">Lue lisää →</a></div></div>
     </div>
   </div>
 </section>
 <section class="band-dark">
   <div class="wrap" style="text-align:center;max-width:720px;margin-inline:auto">
-    <span class="eyebrow inv">Valmiina puhtaaseen autoon?</span>
+    <span class="eyebrow inv">Oletko valmis? Puhdas auto odottaa</span>
     <h2 style="font-family:var(--display);font-weight:800;font-size:clamp(26px,4vw,44px);margin-top:14px">Tilaa pesu tai pyydä tarjous</h2>
-    <p class="muted" style="margin-top:14px">Kerro autosi malli, sijainti ja toiveesi, niin saat tarkan hinnan ja sopivan ajan.</p>
+    <p class="muted" style="margin-top:14px">Määritämme jokaiselle autolle oman hinnan koon, kunnon, halutun lopputuloksen ja sijainnin perusteella. Hanki tarjous vain minuutissa.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px">
       <a class="btn btn-primary" href="tilaa-pesu.html">Tilaa pesu →</a>
       <a class="btn btn-ghost inv" href="tilaa-pesu.html">Hanki tarjous</a>
     </div>
   </div>
 </section>
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <div class="logo"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000212-c433fc4340/logo.cardetailinghelsinki-2.png?ph=7c6f3620a0" alt="Car Detailing Helsinki"><span>Car Detailing Helsinki</span></div>
-        <p>Liikkuva premium-autonpesu pääkaupunkiseudulla. Me tulemme luoksesi.</p>
-      </div>
-      <div><h4>Sivut</h4>
-        <a href="index.html">Etusivu</a><a href="palvelut.html">Palvelut</a>
-        <a href="tilaa-pesu.html">Tilaa pesu</a><a href="meista.html">Meistä</a><a href="faq.html">FAQ</a>
-      </div>
-      <div><h4>Palvelut</h4>
-        <a href="palvelut.html#sisapuhdistus">Auton sisäpuhdistus</a>
-        <a href="palvelut.html#lisapalvelut">Lemmikkien karvojen poisto</a>
-        <a href="palvelut.html#lisapalvelut">Nahkapenkkien hoito</a>
-        <a href="palvelut.html#lisapalvelut">Penkkien tekstiilipesu</a>
-        <a href="palvelut.html#ulkopesu">Auton ulkopesu</a>
-      </div>
-      <div><h4>Yhteys</h4>
-        <a href="tel:+358442300456">+358 44 2300456</a>
-        <a href="mailto:cardetailing.helsinki1@gmail.com">cardetailing.helsinki1@gmail.com</a>
-        <a href="#">Helsinki · Espoo · Vantaa</a>
-      </div>
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="logo"><img src="https://7c6f3620a0.clvaw-cdnwnd.com/b641e59fc3656ee3aa3f7c417f19e57e/200000212-c433fc4340/logo.cardetailinghelsinki-2.png?ph=7c6f3620a0" alt="Car Detailing Helsinki"><span>Car Detailing Helsinki</span></div>
+      <p>Liikkuva premium-autonpesu pääkaupunkiseudulla. Me tulemme luoksesi.</p>
     </div>
-    <div class="foot-bottom"><span>© 2026 Car Detailing Helsinki. Kaikki oikeudet pidätetään.</span><span>Y-tunnus 3549626-1</span></div>
+    <div><h4>Sivut</h4>
+      <a href="index.html">Etusivu</a><a href="palvelut.html">Palvelut</a>
+      <a href="tilaa-pesu.html">Tilaa pesu</a><a href="meista.html">Meistä</a><a href="faq.html">FAQ</a>
+    </div>
+    <div><h4>Palvelut</h4>
+      <a href="sisapuhdistus.html">Auton sisäpuhdistus</a>
+      <a href="ulkopesu.html">Auton ulkopesu</a>
+      <a href="lisapalvelut.html">Lisäpalvelut</a>
+      <a href="kanta-asiakasohjelma.html">Kanta-asiakasohjelma</a>
+    </div>
+    <div><h4>Yhteys</h4>
+      <a href="tel:+358442300456">+358 44 2300456</a>
+      <a href="mailto:cardetailing.helsinki1@gmail.com">cardetailing.helsinki1@gmail.com</a>
+      <a href="#">Helsinki · Espoo · Vantaa</a>
+    </div>
   </div>
-</footer>
+  <div class="foot-bottom"><span>© 2026 Car Detailing Helsinki. Kaikki oikeudet pidätetään.</span><span>Y-tunnus 3549626-1</span></div>
+</div></footer>
 <script src="app.js"></script>
 </body></html>
