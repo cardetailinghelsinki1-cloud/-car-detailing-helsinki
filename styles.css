@@ -370,4 +370,10 @@ footer a:hover{color:#7FB4FF}
 }
 @media (prefers-reduced-motion:reduce){.hero h1 .hl::after{animation:none;transform:scaleX(1)}}
 .hero-left-cta{margin-top:30px}
+/* HERO: kolme etua hero-osion alalaidassa (82rentals-tyyli) */
+.hero-points{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.5vw,36px);margin-top:clamp(24px,5vw,56px);padding-top:clamp(20px,3vw,30px);padding-bottom:clamp(8px,2vw,20px);border-top:1px solid rgba(255,255,255,.16)}
+.hpt{display:flex;align-items:center;gap:12px;color:#eaf1f8;font-family:var(--display);font-weight:600;font-size:clamp(14px,1.4vw,16px);line-height:1.25}
+.hpt-ico{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--btn);color:var(--ink)}
+.hpt-ico svg{width:16px;height:16px}
+@media (max-width:760px){.hero-points{grid-template-columns:1fr;gap:14px}}
 .hero-card .badge-row{margin-bottom:18px}
