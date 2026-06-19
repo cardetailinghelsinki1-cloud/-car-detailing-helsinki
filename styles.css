@@ -38,7 +38,7 @@ img{max-width:100%;display:block}
 .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--display);font-weight:600;font-size:15px;padding:14px 24px;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s,color .2s,border-color .2s,box-shadow .2s;white-space:nowrap}
 .btn:hover{transform:translateY(-2px)}
 .btn-primary{background:var(--btn);color:var(--ink);box-shadow:0 10px 22px -10px rgba(127,180,255,.55)}
-.btn-primary:hover{background:var(--btn-deep)}
+.btn-primary:hover{background:#fff;color:var(--ink);border-color:var(--btn)}
 .btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-ghost.inv{color:#fff;border-color:rgba(255,255,255,.35)}
