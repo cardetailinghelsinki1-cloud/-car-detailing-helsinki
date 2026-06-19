@@ -67,12 +67,12 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);bac
 .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* HERO */
-.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:clamp(460px,68vh,700px);display:grid;align-content:center}
+.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:clamp(400px,58vh,600px);display:grid;align-content:center}
 .hero .bg{position:absolute;inset:0;overflow:hidden}
 .hero .bg .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(11,26,43,.9) 0%,rgba(11,26,43,.58) 50%,rgba(10,108,224,.5) 100%)}
-.hero-inner{position:relative;z-index:2;padding:clamp(34px,4.5vw,64px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-inner{position:relative;z-index:2;padding:clamp(18px,2.5vw,36px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
 .hero .badge-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
 .hero .gbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;font-family:var(--display);font-size:13px;font-weight:600}
 .hero .gbadge .stars{color:var(--gold);letter-spacing:1px}
@@ -333,14 +333,14 @@ footer a:hover{color:#7FB4FF}
 
 /* HERO: kaksi palstaa + oikean reunan kortti (82rentals-tyyli) */
 .hero-left{min-width:0}
-.hero-card{background:rgba(11,26,43,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:clamp(22px,2.4vw,30px);box-shadow:0 30px 60px -25px rgba(0,0,0,.6)}
-.hero-feats{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.hero-card{background:rgba(11,26,43,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:clamp(18px,2vw,26px);box-shadow:0 30px 60px -25px rgba(0,0,0,.6)}
+.hero-feats{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .hero-feats li{display:flex;align-items:flex-start;gap:13px}
 .hf-ico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#3F8BEE);color:#fff;font-size:15px;box-shadow:0 8px 18px -8px rgba(10,108,224,.7)}
 .hf-txt{display:flex;flex-direction:column;gap:3px}
 .hf-txt strong{font-family:var(--display);font-weight:700;font-size:15.5px;color:#fff;line-height:1.25}
 .hf-txt span{font-size:13.5px;color:#bcd0e4;line-height:1.4}
-.hero-card-cta{display:flex;flex-direction:column;gap:11px;margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.13)}
+.hero-card-cta{display:flex;flex-direction:column;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.13)}
 .hero-card-cta .btn{width:100%;justify-content:center}
 @media (max-width:880px){
   .hero-inner{grid-template-columns:1fr;gap:30px}
