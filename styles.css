@@ -15,8 +15,8 @@
   --accent:#0A6CE0;       /* premium-sininen aksentti */
   --accent-deep:#0852AB;
   --accent-soft:#EAF2FE;
-  --btn:#0B1A2B;          /* nappien väri = tumman osion tausta (--ink) */
-  --btn-deep:#13294A;     /* napin hover (hieman vaaleampi navy) */
+  --btn:#7FB4FF;          /* nappien väri = hero "Me tulemme" -teksti */
+  --btn-deep:#5E9DF0;     /* napin hover (hieman tummempi sininen) */
   --accent-lite:#7FB4FF;  /* vaalea aksentti tummalle taustalle */
   --gold:#FBA50A;         /* tähdet */
   --radius:14px; --maxw:1180px; --pad:clamp(20px,5vw,40px);
@@ -37,10 +37,8 @@ img{max-width:100%;display:block}
 
 .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--display);font-weight:600;font-size:15px;padding:14px 24px;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease,background .2s,color .2s,border-color .2s,box-shadow .2s;white-space:nowrap}
 .btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--btn);color:#fff;box-shadow:0 10px 22px -10px rgba(11,26,43,.55)}
+.btn-primary{background:var(--btn);color:var(--ink);box-shadow:0 10px 22px -10px rgba(127,180,255,.55)}
 .btn-primary:hover{background:var(--btn-deep)}
-/* Tummalla taustalla navy-nappi erottuu hennon reunan avulla */
-.hero .btn-primary,.band-dark .btn-primary{border-color:rgba(255,255,255,.28)}
 .btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-ghost.inv{color:#fff;border-color:rgba(255,255,255,.35)}
@@ -190,7 +188,7 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .cta-box h2{font-size:clamp(26px,3.4vw,38px);font-weight:800}
 .cta-box p{margin-top:14px;color:rgba(255,255,255,.9)}
 .cta-box .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-.cta-box .btn-primary{background:#fff;color:var(--btn);box-shadow:none}
+.cta-box .btn-primary{background:#fff;color:var(--ink);box-shadow:none}
 .cta-box .btn-ghost{color:#fff;border-color:rgba(255,255,255,.5)}
 .cta-box .btn-ghost:hover{border-color:#fff;color:#fff}
 
