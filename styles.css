@@ -52,7 +52,7 @@ img{max-width:100%;display:block}
 /* NAVI */
 header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:18px}
+.logo{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-style:italic;letter-spacing:-.01em;font-size:18px}
 .logo img{height:40px;width:auto}
 .logo .txt small{display:block;font-size:9px;letter-spacing:.16em;color:var(--muted);font-weight:600;text-transform:uppercase}
 .nav-links{display:flex;align-items:center;gap:26px}
