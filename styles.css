@@ -67,11 +67,11 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);bac
 .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* HERO */
-.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:clamp(380px,52vh,560px);display:grid;align-content:start;padding:0}
+.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:max(700px,110vh);display:grid;align-content:start;padding:0}
 .hero .bg{position:absolute;inset:0;overflow:hidden}
 .hero .bg .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(11,26,43,.9) 0%,rgba(11,26,43,.58) 50%,rgba(10,108,224,.5) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(118deg,rgba(8,28,72,.9) 0%,rgba(11,72,172,.62) 48%,rgba(18,116,232,.7) 100%)}
 .hero-inner{position:relative;z-index:2;padding:clamp(8px,1.2vw,18px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
 .hero .badge-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
 .hero .gbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;font-family:var(--display);font-size:13px;font-weight:600}
