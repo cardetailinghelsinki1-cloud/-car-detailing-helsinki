@@ -92,7 +92,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);bac
 @media (prefers-reduced-motion:reduce){.hero .anim{animation:none;opacity:1;transform:none}}
 
 /* MARQUEE (82rentals-tyylinen rullaava pillerinauha) */
-.marquee{background:var(--accent);color:#fff;overflow:hidden;border-block:1px solid var(--accent-deep)}
+.marquee{background:var(--ink);color:#fff;overflow:hidden;border-block:1px solid rgba(255,255,255,.12)}
 .marquee .track{display:flex;width:max-content;animation:scroll 26s linear infinite}
 .marquee:hover .track{animation-play-state:paused}
 .marquee .item{display:flex;align-items:center;gap:10px;padding:14px 28px;font-family:var(--display);font-weight:600;font-size:15px;white-space:nowrap}
@@ -342,7 +342,7 @@ footer a:hover{color:#7FB4FF}
 .hero-card{background:rgba(11,26,43,.5);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:clamp(18px,2vw,26px);box-shadow:0 30px 60px -25px rgba(0,0,0,.6)}
 .hero-feats{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .hero-feats li{display:flex;align-items:flex-start;gap:13px}
-.hf-ico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#3F8BEE);color:#fff;font-size:15px;box-shadow:0 8px 18px -8px rgba(10,108,224,.7)}
+.hf-ico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--btn);color:var(--ink);font-size:15px;box-shadow:0 8px 18px -8px rgba(127,180,255,.7)}
 .hf-ico svg{width:18px;height:18px}
 .hc-title{font-family:var(--display);font-weight:700;font-size:clamp(18px,1.6vw,22px);color:#fff;line-height:1.2;letter-spacing:-.01em;margin:0 0 16px}
 .hf-txt{display:flex;flex-direction:column;gap:3px}
@@ -358,7 +358,13 @@ footer a:hover{color:#7FB4FF}
 /* HERO otsikon värit + alleviivausanimaatio (82rentals-tyyli) */
 .hero h1 .hb{color:#7FB4FF}
 .hero h1 .hl{color:#fff;position:relative;display:inline-block}
-.hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.11em;border-radius:999px;background:linear-gradient(90deg,#6EC6FF,#0A6CE0);transform:scaleX(0);transform-origin:left center;animation:hlDraw 1s cubic-bezier(.6,.15,.2,1) .65s forwards}
-@keyframes hlDraw{to{transform:scaleX(1)}}
+.hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.11em;border-radius:999px;background:var(--ink);transform:scaleX(0);transform-origin:left center;animation:hlDraw 3.4s cubic-bezier(.6,.15,.2,1) .4s infinite}
+@keyframes hlDraw{
+  0%{transform:scaleX(0);transform-origin:left center}
+  30%{transform:scaleX(1);transform-origin:left center}
+  62%{transform:scaleX(1);transform-origin:right center}
+  100%{transform:scaleX(0);transform-origin:right center}
+}
+@media (prefers-reduced-motion:reduce){.hero h1 .hl::after{animation:none;transform:scaleX(1)}}
 .hero-left-cta{margin-top:30px}
 .hero-card .badge-row{margin-bottom:18px}
