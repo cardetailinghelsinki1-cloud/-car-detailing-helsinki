@@ -67,12 +67,12 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);bac
 .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* HERO */
-.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:clamp(560px,84vh,900px);display:grid;align-content:center}
+.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:clamp(460px,68vh,700px);display:grid;align-content:center}
 .hero .bg{position:absolute;inset:0;overflow:hidden}
 .hero .bg .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(11,26,43,.9) 0%,rgba(11,26,43,.58) 50%,rgba(10,108,224,.5) 100%)}
-.hero-inner{position:relative;z-index:2;padding:clamp(70px,12vw,140px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.hero-inner{position:relative;z-index:2;padding:clamp(34px,4.5vw,64px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
 .hero .badge-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
 .hero .gbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;font-family:var(--display);font-size:13px;font-weight:600}
 .hero .gbadge .stars{color:var(--gold);letter-spacing:1px}
@@ -346,3 +346,11 @@ footer a:hover{color:#7FB4FF}
   .hero-inner{grid-template-columns:1fr;gap:30px}
   .hero-card{max-width:520px}
 }
+
+/* HERO otsikon värit + alleviivausanimaatio (82rentals-tyyli) */
+.hero h1 .hb{color:#7FB4FF}
+.hero h1 .hl{color:#fff;position:relative;display:inline-block}
+.hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.11em;border-radius:999px;background:linear-gradient(90deg,#6EC6FF,#0A6CE0);transform:scaleX(0);transform-origin:left center;animation:hlDraw 1s cubic-bezier(.6,.15,.2,1) .65s forwards}
+@keyframes hlDraw{to{transform:scaleX(1)}}
+.hero-left-cta{margin-top:30px}
+.hero-card .badge-row{margin-bottom:18px}
