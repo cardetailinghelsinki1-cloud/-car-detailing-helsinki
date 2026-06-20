@@ -124,6 +124,10 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .media:hover img{transform:scale(1.05)}
 .media.tall img{aspect-ratio:3/4}
 .media-stack{display:grid;gap:16px}
+/* INTRO-osion kuva: venyy viereisen tekstin korkuiseksi */
+.intro-media{align-self:stretch}
+.intro-media img{height:100%;width:100%;object-fit:cover;aspect-ratio:auto}
+@media (max-width:760px){.intro-media{align-self:auto}.intro-media img{height:auto;aspect-ratio:4/3}}
 
 .cta-inline{margin-top:30px}
 
