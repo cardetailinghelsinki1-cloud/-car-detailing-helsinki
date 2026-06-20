@@ -18,7 +18,7 @@
   --btn:#7FB4FF;          /* nappien väri = hero "Me tulemme" -teksti */
   --btn-deep:#5E9DF0;     /* napin hover (hieman tummempi sininen) */
   --accent-lite:#7FB4FF;  /* vaalea aksentti tummalle taustalle */
-  --head:#1E3A8A;         /* otsikoiden tummansininen (vaaleilla osioilla) */
+  --head:#0A3D62;         /* otsikoiden tummansininen (82rentals "me somessa") */
   --gold:#FBA50A;         /* tähdet */
   --radius:14px; --maxw:1180px; --pad:clamp(20px,5vw,40px);
   --display:"Poppins",system-ui,sans-serif;
