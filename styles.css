@@ -128,14 +128,15 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .media:hover img{transform:scale(1.05)}
 .media.tall img{aspect-ratio:3/4}
 .media-stack{display:grid;gap:16px}
-/* INTRO-osion kuva: venyy viereisen tekstin korkuiseksi */
-.intro-media{align-self:stretch}
-/* Intro-tekstilaatikko: sama lasilaatikko-tyyli kuin hero-kortti */
-.intro-box{background:rgba(11,26,43,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:clamp(24px,3.2vw,42px);box-shadow:0 30px 60px -25px rgba(0,0,0,.45)}
-.split .copy.intro-box h2{color:#fff}
-.split .copy.intro-box p{color:#cfe0f0}
-.intro-media img{height:100%;width:100%;object-fit:cover;aspect-ratio:auto}
-@media (max-width:760px){.intro-media{align-self:auto}.intro-media img{height:auto;aspect-ratio:4/3}}
+/* Intro-osio: kuva ja teksti samassa lasilaatikossa (hero-tyyli) */
+.intro-box{background:rgba(11,26,43,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:24px;padding:clamp(14px,1.6vw,20px);box-shadow:0 30px 60px -25px rgba(0,0,0,.45)}
+.intro-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(16px,2.4vw,32px);align-items:stretch}
+.intro-media{align-self:stretch;border-radius:16px;overflow:hidden;min-height:320px}
+.intro-media img{height:100%;width:100%;object-fit:cover}
+.intro-text{padding:clamp(10px,1.6vw,24px)}
+.intro-box h2{color:#fff}
+.intro-box p{color:#cfe0f0}
+@media (max-width:760px){.intro-inner{grid-template-columns:1fr}.intro-media{min-height:240px}}
 
 .cta-inline{margin-top:30px}
 
