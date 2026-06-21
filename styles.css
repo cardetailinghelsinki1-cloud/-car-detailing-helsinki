@@ -95,7 +95,7 @@ header.nav .logo:hover img{transform:scale(1.15)}
 .hero .bg .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(118deg,rgba(8,26,60,.74) 0%,rgba(12,62,150,.42) 50%,rgba(22,112,226,.5) 100%)}
-.hero-inner{position:relative;z-index:2;padding:clamp(22px,3vw,46px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
+.hero-inner{position:relative;z-index:2;padding:clamp(44px,5.5vw,80px) 0 clamp(22px,3vw,46px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
 .hero .badge-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
 .hero .gbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;font-family:var(--display);font-size:13px;font-weight:600}
 .hero .gbadge .stars{color:var(--gold);letter-spacing:1px}
