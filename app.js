@@ -4,6 +4,22 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBt
 
 (function(){const t=document.getElementById('track');if(t)t.innerHTML+=t.innerHTML;})();
 
+/* Kampanjalaskuri (countdown) */
+(function(){
+  var cd=document.getElementById('countdown');if(!cd)return;
+  var dl=new Date(cd.getAttribute('data-deadline')).getTime();
+  var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  function p(n){return(n<10?'0':'')+n;}
+  function tick(){
+    var diff=dl-Date.now();if(diff<0)diff=0;
+    d.textContent=p(Math.floor(diff/86400000));
+    h.textContent=p(Math.floor(diff%86400000/3600000));
+    m.textContent=p(Math.floor(diff%3600000/60000));
+    s.textContent=p(Math.floor(diff%60000/1000));
+  }
+  tick();setInterval(tick,1000);
+})();
+
 document.querySelectorAll('.qa button').forEach(b=>{b.addEventListener('click',()=>{const qa=b.parentElement,a=qa.querySelector('.a'),open=qa.classList.contains('open');document.querySelectorAll('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('.a').style.maxHeight=null;});if(!open){qa.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}});});
 
 const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;

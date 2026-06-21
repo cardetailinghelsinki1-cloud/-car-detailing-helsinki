@@ -48,6 +48,17 @@ img{max-width:100%;display:block}
 .btn:hover .arr{transform:translateX(3px)}
 
 /* ANNOUNCEMENT BAR */
+/* KAMPANJAPALKKI + LASKURI */
+.promobar{background:linear-gradient(90deg,var(--accent),var(--accent-deep));color:#fff;font-family:var(--display);font-size:13.5px}
+.promobar-inner{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:8px 16px;text-align:center}
+.promo-text strong{font-weight:700}
+.countdown{display:inline-flex;align-items:center;gap:5px;font-weight:700}
+.cd-unit{display:inline-flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.18);border-radius:6px;padding:2px 7px;min-width:40px;line-height:1.05}
+.cd-unit b{font-size:15px;font-variant-numeric:tabular-nums}
+.cd-unit i{font-style:normal;font-size:9px;letter-spacing:.04em;text-transform:uppercase;opacity:.85}
+.cd-sep{opacity:.55;font-weight:700}
+.promo-note{opacity:.95}
+@media (max-width:760px){.promobar{font-size:12px}.promo-note{flex-basis:100%;order:3}}
 .topbar{background:var(--ink);color:#fff;font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.02em}
 .topbar a{display:flex;align-items:center;justify-content:center;gap:10px;padding:9px 16px;text-align:center}
 .topbar .star{color:var(--gold)}
