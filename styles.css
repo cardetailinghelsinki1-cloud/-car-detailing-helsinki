@@ -167,6 +167,8 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .reason{background:var(--paper);padding:32px 28px;transition:background .2s,transform .2s}
 .reason:hover{background:var(--accent-soft)}
 .reason .num{font-family:var(--display);font-size:14px;font-weight:700;color:var(--accent-lite)}
+.reason-ico{width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(10,61,98,.45);display:grid;place-items:center;color:var(--head)}
+.reason-ico svg{width:24px;height:24px}
 .reason h3{font-size:20px;margin-top:14px;font-weight:700}
 .reason p{color:var(--muted);font-size:15.5px;margin-top:10px}
 
