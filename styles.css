@@ -147,12 +147,10 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .media:hover img{transform:scale(1.05)}
 .media.tall img{aspect-ratio:3/4}
 .media-stack{display:grid;gap:16px}
-/* Intro-osio: otsikko+teksti laatikossa, kuva ja napit sen ulkopuolella */
-.intro-box{background:rgba(11,26,43,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:clamp(22px,3vw,38px);box-shadow:0 30px 60px -25px rgba(0,0,0,.45)}
-.intro-box h2{color:#fff}
-.intro-box p{color:#cfe0f0;margin-top:14px}
-.intro-media{align-self:stretch;border-radius:16px;overflow:hidden;min-height:320px}
-.intro-media img{height:100%;width:100%;object-fit:cover}
+/* Intro-osio: näyttävä kuva + teksti (ei laatikkoa) */
+.intro-media{align-self:stretch;border-radius:18px;overflow:hidden;min-height:360px;box-shadow:0 34px 64px -38px rgba(11,26,43,.55)}
+.intro-media img{height:100%;width:100%;object-fit:cover;transition:transform .6s ease}
+.intro-media:hover img{transform:scale(1.04)}
 @media (max-width:760px){.intro-media{min-height:240px}}
 
 .cta-inline{margin-top:30px}
