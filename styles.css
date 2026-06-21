@@ -49,17 +49,22 @@ img{max-width:100%;display:block}
 
 /* ANNOUNCEMENT BAR */
 /* KAMPANJAPALKKI + LASKURI */
-.promobar{background:var(--btn);color:var(--ink);font-family:var(--display);font-size:13.5px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
-.promobar-inner{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:8px 16px;text-align:center}
-.promo-text strong{font-weight:800}
-.promo-end{color:#E11D2A;font-weight:800}
-.countdown{display:inline-flex;align-items:center;gap:5px;font-weight:800;color:#E11D2A}
-.cd-unit{display:inline-flex;flex-direction:column;align-items:center;background:#fff;border-radius:6px;padding:2px 7px;min-width:42px;line-height:1.05;box-shadow:0 2px 6px -2px rgba(0,0,0,.25)}
-.cd-unit b{font-size:15px;font-variant-numeric:tabular-nums;color:#E11D2A}
-.cd-unit i{font-style:normal;font-size:9px;letter-spacing:.04em;color:var(--ink);opacity:.6}
-.cd-sep{color:#E11D2A;font-weight:800}
-.promo-note{opacity:.9;font-weight:600}
-@media (max-width:760px){.promobar{font-size:12px}.promo-note{flex-basis:100%;order:3}}
+.promobar{background:#5B9BD5;overflow:hidden;font-family:var(--display)}
+.promo-track{display:flex;align-items:center;gap:30px;width:max-content;animation:promoScroll 30s linear infinite}
+.promobar:hover .promo-track{animation-play-state:paused}
+.promo-group{display:flex;align-items:center;gap:16px;padding:8px 0;white-space:nowrap}
+.promo-spark{display:inline-flex;color:var(--ink)}
+.promo-spark svg{width:15px;height:15px}
+.promo-title{color:var(--ink);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:14px}
+.promo-dot{color:var(--ink);opacity:.4;font-weight:700}
+.promo-end{color:#E11D2A;font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:13px}
+.countdown{display:inline-flex;align-items:center;gap:6px}
+.cd-unit{display:inline-flex;align-items:baseline;gap:3px;background:#E11D2A;color:#fff;border-radius:6px;padding:3px 9px}
+.cd-unit b{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums}
+.cd-unit i{font-style:normal;font-size:9px;font-weight:700;text-transform:uppercase}
+.promo-note{color:var(--ink);font-weight:500;font-size:13.5px}
+@keyframes promoScroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.promo-track{animation:none}}
 .topbar{background:var(--ink);color:#fff;font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.02em}
 .topbar a{display:flex;align-items:center;justify-content:center;gap:10px;padding:9px 16px;text-align:center}
 .topbar .star{color:var(--gold)}

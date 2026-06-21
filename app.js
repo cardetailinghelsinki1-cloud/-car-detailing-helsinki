@@ -4,18 +4,24 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBt
 
 (function(){const t=document.getElementById('track');if(t)t.innerHTML+=t.innerHTML;})();
 
-/* Kampanjalaskuri (countdown) */
+/* Kampanjapalkki: täytä liikkuva rata + live-laskuri (82rentals-tyyli) */
 (function(){
-  var cd=document.getElementById('countdown');if(!cd)return;
-  var dl=new Date(cd.getAttribute('data-deadline')).getTime();
-  var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  var bar=document.querySelector('.promobar');if(!bar)return;
+  var track=bar.querySelector('.promo-track');
+  if(track){
+    var unit=track.innerHTML,n=1;
+    while((track.scrollWidth < window.innerWidth*2 || n%2!==0) && n<24){track.innerHTML+=unit;n++;}
+    track.style.animationDuration=Math.max(18,(track.scrollWidth/2)/90)+'s';
+  }
+  var dl=new Date(bar.getAttribute('data-deadline')).getTime();
   function p(n){return(n<10?'0':'')+n;}
+  function set(cls,val){var e=bar.querySelectorAll(cls);for(var i=0;i<e.length;i++)e[i].textContent=val;}
   function tick(){
     var diff=dl-Date.now();if(diff<0)diff=0;
-    d.textContent=p(Math.floor(diff/86400000));
-    h.textContent=p(Math.floor(diff%86400000/3600000));
-    m.textContent=p(Math.floor(diff%3600000/60000));
-    s.textContent=p(Math.floor(diff%60000/1000));
+    set('.cd-d',p(Math.floor(diff/86400000)));
+    set('.cd-h',p(Math.floor(diff%86400000/3600000)));
+    set('.cd-m',p(Math.floor(diff%3600000/60000)));
+    set('.cd-s',p(Math.floor(diff%60000/1000)));
   }
   tick();setInterval(tick,1000);
 })();
