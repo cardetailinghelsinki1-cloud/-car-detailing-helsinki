@@ -90,18 +90,18 @@ header.nav .logo:hover img{transform:scale(1.15)}
 .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* HERO */
-.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:max(640px,100vh);display:grid;align-content:start;padding:0}
+.hero{position:relative;color:#fff;overflow:hidden;background:var(--ink);min-height:max(560px,84vh);display:grid;align-content:start;padding:0}
 .hero .bg{position:absolute;inset:0;overflow:hidden}
 .hero .bg .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(118deg,rgba(8,26,60,.74) 0%,rgba(12,62,150,.42) 50%,rgba(22,112,226,.5) 100%)}
-.hero-inner{position:relative;z-index:2;padding:clamp(40px,5vw,80px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
+.hero-inner{position:relative;z-index:2;padding:clamp(22px,3vw,46px) 0;display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:start}
 .hero .badge-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
 .hero .gbadge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 13px;border-radius:999px;font-family:var(--display);font-size:13px;font-weight:600}
 .hero .gbadge .stars{color:var(--gold);letter-spacing:1px}
 .hero h1{font-size:clamp(40px,6vw,78px);line-height:.98;letter-spacing:-.035em;margin:0;font-weight:800}
 .hero h1 em{font-style:normal;color:#7FB4FF}
-.hero .lead{max-width:620px;color:#cfe0f0;font-size:clamp(17px,2.2vw,20px);margin:22px 0 0}
+.hero .lead{max-width:620px;color:#cfe0f0;font-size:clamp(17px,2.2vw,20px);margin:16px 0 0}
 .hero .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
 .hero .anim{opacity:0;transform:translateY(22px);animation:rise .8s cubic-bezier(.22,1,.36,1) forwards}
 .hero .badge-row{animation-delay:.05s}
@@ -399,9 +399,9 @@ footer a:hover{color:#7FB4FF}
   100%{transform:scaleX(0);transform-origin:right center}
 }
 @media (prefers-reduced-motion:reduce){.hero h1 .hl::after{animation:none;transform:scaleX(1)}}
-.hero-left-cta{margin-top:30px}
+.hero-left-cta{margin-top:22px}
 /* HERO: kolme etua hero-osion alalaidassa (82rentals-tyyli) */
-.hero-points{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.5vw,36px);margin-top:clamp(24px,5vw,56px);margin-bottom:clamp(30px,6vw,72px);padding-block:clamp(20px,3vw,30px);border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)}
+.hero-points{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.5vw,36px);margin-top:clamp(16px,3vw,32px);margin-bottom:clamp(14px,3vw,32px);padding-block:clamp(14px,2vw,22px);border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)}
 .hpt{display:flex;align-items:center;gap:12px;color:#eaf1f8;font-family:var(--display);font-weight:600;font-size:clamp(14px,1.4vw,16px);line-height:1.25}
 .hpt-ico{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--btn);color:var(--ink)}
 .hpt-ico svg{width:16px;height:16px}
