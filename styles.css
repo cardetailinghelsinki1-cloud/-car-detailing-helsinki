@@ -406,7 +406,7 @@ footer a:hover{color:#7FB4FF}
 /* HERO otsikon värit + alleviivausanimaatio (82rentals-tyyli) */
 .hero h1 .hb{color:#7FB4FF}
 .hero h1 .hl{color:#fff;position:relative;display:inline-block}
-.hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.11em;border-radius:999px;background:var(--btn);transform:scaleX(0);transform-origin:left center;animation:hlDraw 3.4s cubic-bezier(.6,.15,.2,1) .4s infinite}
+.hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.11em;border-radius:999px;background:#5B9BD5;transform:scaleX(0);transform-origin:left center;animation:hlDraw 3.4s cubic-bezier(.6,.15,.2,1) .4s infinite}
 @keyframes hlDraw{
   0%{transform:scaleX(0);transform-origin:left center}
   30%{transform:scaleX(1);transform-origin:left center}
