@@ -285,7 +285,7 @@ footer a:hover{color:#7FB4FF}
 .media.anim-img{clip-path:inset(0 100% 0 0);opacity:0}
 .media.anim-img.in{clip-path:inset(0 0 0 0);opacity:1;transition:clip-path 1s cubic-bezier(.22,1,.36,1),opacity .6s ease}
 /* Osioiden otsikkoon piirtyvä aksenttiviiva */
-.sec-head h2::after{content:"";display:block;width:0;height:4px;border-radius:2px;background:var(--accent);margin-top:16px;transition:width .85s cubic-bezier(.22,1,.36,1) .15s}
+.sec-head h2::after{content:"";display:block;width:0;height:4px;border-radius:2px;background:#5B9BD5;margin-top:16px;transition:width .85s cubic-bezier(.22,1,.36,1) .15s}
 .sec-head h2.drawn::after{width:100%}
 /* Suuntaiset reveal-variantit (teksti liukuu sivusta) */
 .rv{opacity:0;transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1)}
