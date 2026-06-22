@@ -370,6 +370,11 @@ footer a:hover{color:#7FB4FF}
 .svc .body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
 .svc h3{font-family:var(--display);font-size:21px;font-weight:700}
 .svc .from{font-family:var(--display);font-weight:700;color:var(--accent-lite);margin-top:6px}
+/* Kampanjahinta: alkuperäinen hinta yliviivataan animoidusti */
+.old-price{position:relative;margin-left:9px;color:var(--muted);font-weight:600;font-size:.82em;white-space:nowrap}
+.old-price::after{content:"";position:absolute;left:-2px;top:50%;width:0;height:2px;background:#E11D2A;transform:translateY(-50%);transition:width .55s cubic-bezier(.22,1,.36,1) .25s}
+.reveal.in .old-price::after{width:calc(100% + 4px)}
+@media (prefers-reduced-motion:reduce){.old-price::after{transition:none;width:calc(100% + 4px)}}
 .svc p{color:var(--muted);font-size:15px;margin-top:10px;flex:1}
 .svc .btn{margin-top:18px;align-self:flex-start}
 
