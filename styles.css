@@ -210,7 +210,7 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .review-grid .review.more{display:none}
 .review-grid.show-all .review.more{display:block}
 .reviews-more{text-align:center;margin-top:clamp(24px,3.2vw,36px)}
-.rv-more-btn{font-family:var(--display);font-weight:400;font-size:15px;color:var(--head);background:#fff;border:0;border-radius:14px;padding:11px 28px;cursor:pointer;box-shadow:0 6px 26px rgba(11,26,43,.16);transition:transform .18s ease,box-shadow .2s}
+.rv-more-btn{font-family:var(--body);font-weight:400;font-size:15px;color:var(--head);background:#fff;border:0;border-radius:14px;padding:11px 28px;cursor:pointer;box-shadow:0 6px 26px rgba(11,26,43,.16);transition:transform .18s ease,box-shadow .2s}
 .rv-more-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(11,26,43,.22)}
 
 /* ARVOT */
