@@ -4,6 +4,9 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBt
 
 (function(){const t=document.getElementById('track');if(t)t.innerHTML+=t.innerHTML;})();
 
+/* Arvostelut: "Lataa lisää" -nappi näyttää loput kortit */
+(function(){var btn=document.getElementById('loadMoreReviews');if(!btn)return;btn.addEventListener('click',function(){var g=document.getElementById('reviewGrid');if(g)g.classList.add('show-all');btn.style.display='none';});})();
+
 /* Kampanjapalkki: täytä liikkuva rata + live-laskuri (82rentals-tyyli) */
 (function(){
   var bar=document.querySelector('.promobar');if(!bar)return;
