@@ -182,7 +182,8 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .greviews{background:var(--paper-2)}
 /* Yhteenvetopalkki (Google · Erinomainen · tähdet · 4,9 | 17 arvostelua · Kirjoita arvostelu) */
 .gsummary{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#F5F6F7;border:1px solid #ECEFF2;border-radius:26px;padding:16px 24px;margin-top:clamp(30px,4vw,44px);box-shadow:0 16px 40px -32px rgba(11,26,43,.35)}
-.gsummary .gword{font-family:"Poppins",var(--display);font-weight:700;font-size:25px;letter-spacing:-.02em}
+.gsummary .gword{display:inline-flex;align-items:center}
+.gsummary .gword svg{height:27px;width:auto;display:block}
 .gsummary .rating-word{font-family:var(--display);font-weight:700;font-size:16px;color:var(--head)}
 .gsummary .gs-stars{color:#FBBC04;font-size:20px;letter-spacing:1px}
 .gsummary .gs-cnt{display:inline-flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:16px;color:var(--head)}
