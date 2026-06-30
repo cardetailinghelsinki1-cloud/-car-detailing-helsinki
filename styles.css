@@ -366,7 +366,7 @@ footer a:hover{color:#7FB4FF}
 .dropdown a:hover{background:var(--accent-soft);color:var(--accent-deep)}
 
 /* hintakortit (paketit) */
-.pricecards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:clamp(30px,4vw,44px)}
+.pricecards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:clamp(30px,4vw,44px)}
 .pcard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
 .pcard:hover{transform:translateY(-4px);box-shadow:0 22px 44px -26px rgba(11,26,43,.4);border-color:var(--accent)}
 .pcard.feat{border-color:var(--accent);box-shadow:0 22px 44px -28px rgba(10,108,224,.4)}
@@ -375,6 +375,9 @@ footer a:hover{color:#7FB4FF}
 .pcard .price{font-family:var(--display);font-size:30px;font-weight:800;color:var(--accent-lite);margin-top:10px}
 .pcard .kesto{font-size:13px;color:var(--muted);font-family:var(--display);margin-top:2px}
 .pcard p{color:var(--muted);font-size:15px;margin-top:14px;flex:1}
+.pkg-list{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;flex:1}
+.pkg-list li{display:flex;align-items:flex-start;gap:10px;color:var(--text);font-size:14.5px;line-height:1.38}
+.pkg-list li svg{flex:0 0 auto;width:18px;height:18px;margin-top:2px;color:var(--accent-lite)}
 .pcard .btn{margin-top:20px;justify-content:center}
 
 /* palvelukortit (Palvelumme-yleissivu) */
