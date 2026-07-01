@@ -120,7 +120,7 @@ if(!reduce){
       var r=DOT_BASE+DOT_VAR*f;
       ctx.beginPath();
       ctx.arc(cx+meander(y),y,r,0,Math.PI*2);
-      ctx.fillStyle='rgba(148,164,183,'+(0.3+0.55*f)+')';
+      ctx.fillStyle='rgba(10,61,98,'+(0.35+0.55*f)+')';
       ctx.fill();
     }
     for(var i=0;i<nodeYs.length;i++){
