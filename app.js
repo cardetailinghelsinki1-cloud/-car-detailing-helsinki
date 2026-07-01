@@ -92,12 +92,15 @@ if(!reduce){
     cards.forEach(function(c){io.observe(c);});
   }else{cards.forEach(function(c){c.classList.add('in');});}
   var canvas=document.getElementById('howitPath');
+  var nodes=[].slice.call(steps.querySelectorAll('.howit-node'));
+  var stepEls=[].slice.call(steps.querySelectorAll('.howit-step'));
   if(!canvas||!canvas.getContext)return;
   var ctx=canvas.getContext('2d');
   var dpr=Math.max(1,window.devicePixelRatio||1);
   var Wcss=72,Hcss=0;
-  var SPACING=19,AMP=20,WAVELEN=190,BASE=2.8,VAR=3.4,SIZEWAVE=70;
+  var SPACING=19,AMP=11,WAVELEN=300,BASE=2.8,VAR=3.4,SIZEWAVE=70;
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function meander(y){return AMP*Math.sin(y/WAVELEN*Math.PI*2);}
   function draw(){
     if(!Hcss)return;
     ctx.setTransform(dpr,0,0,dpr,0,0);
@@ -106,7 +109,7 @@ if(!reduce){
     var scroll=window.pageYOffset||document.documentElement.scrollTop||0;
     var phase=reduced?0:scroll/55;
     for(var y=SPACING/2;y<Hcss;y+=SPACING){
-      var x=cx+AMP*Math.sin(y/WAVELEN*Math.PI*2);
+      var x=cx+meander(y);
       var t=0.5+0.5*Math.sin(y/SIZEWAVE+phase);
       var r=BASE+VAR*t;
       ctx.beginPath();
@@ -115,15 +118,34 @@ if(!reduce){
       ctx.fill();
     }
   }
+  function placeNodes(){
+    var sr=steps.getBoundingClientRect();
+    var cr=canvas.getBoundingClientRect();
+    var linexPx=(cr.left-sr.left)+cr.width/2;
+    nodes.forEach(function(n,i){
+      var st=stepEls[i];if(!st)return;
+      var str=st.getBoundingClientRect();
+      var cy=(str.top-sr.top)+str.height/2;
+      n.style.top=cy+'px';
+      n.style.left=(linexPx+meander(cy))+'px';
+    });
+  }
+  function activate(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    nodes.forEach(function(n){
+      var nr=n.getBoundingClientRect();
+      if((nr.top+nr.height/2)<=vh*0.6)n.classList.add('active');else n.classList.remove('active');
+    });
+  }
   function resize(){
     Hcss=steps.offsetHeight;
     canvas.style.width=Wcss+'px';canvas.style.height=Hcss+'px';
     canvas.width=Math.round(Wcss*dpr);canvas.height=Math.round(Hcss*dpr);
-    draw();
+    draw();placeNodes();activate();
   }
   var ticking=false;
-  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(function(){draw();ticking=false;});}}
-  if(!reduced)window.addEventListener('scroll',onScroll,{passive:true});
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(function(){draw();activate();ticking=false;});}}
+  window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',resize);
   resize();
   setTimeout(resize,400);
