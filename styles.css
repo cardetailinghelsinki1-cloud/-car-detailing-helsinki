@@ -28,6 +28,19 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:var(--body);color:var(--text);background:var(--paper);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+/* Taustan liikkuvat valopallot (näkyvät läpi vaaleista osioista) */
+html{background:var(--paper)}
+body.fx{background:transparent}
+.bg-orbs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.bg-orbs .orb-layer{position:absolute;inset:0;will-change:transform}
+.bg-orbs .orb{position:absolute;border-radius:50%;filter:blur(85px);opacity:.5}
+.bg-orbs .o1{width:46vw;height:46vw;left:-8vw;top:8vh;background:radial-gradient(circle at 35% 35%,#8FC0FF,rgba(143,192,255,0) 70%);animation:orbA 32s ease-in-out infinite}
+.bg-orbs .o2{width:40vw;height:40vw;right:-6vw;top:44vh;background:radial-gradient(circle at 50% 50%,#BFE0FF,rgba(191,224,255,0) 70%);animation:orbB 40s ease-in-out infinite}
+.bg-orbs .o3{width:36vw;height:36vw;left:22vw;bottom:-8vh;background:radial-gradient(circle at 50% 50%,#A7CBFF,rgba(167,203,255,0) 70%);animation:orbC 36s ease-in-out infinite}
+@keyframes orbA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(7vw,5vh) scale(1.08)}}
+@keyframes orbB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6vw,-5vh) scale(1.1)}}
+@keyframes orbC{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(5vw,-4vh) scale(1.06)}}
+@media (prefers-reduced-motion:reduce){.bg-orbs .orb{animation:none}}
 h1,h2,h3{margin:0;font-family:var(--display);line-height:1.08;letter-spacing:-.02em;font-weight:700}
 p{margin:0}
 a{color:inherit;text-decoration:none}

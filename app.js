@@ -174,3 +174,15 @@ if(!reduce){
   resize();
   setTimeout(resize,400);
 })();
+
+/* Taustan valopallojen kevyt parallax skrollatessa (vain etusivu) */
+(function(){
+  var orbs=document.querySelector('.bg-orbs');if(!orbs)return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var layers=[].slice.call(orbs.querySelectorAll('.orb-layer'));
+  var rates=[-0.05,-0.10,-0.16];
+  var ticking=false;
+  function upd(){for(var i=0;i<layers.length;i++){layers[i].style.transform='translateY('+((window.pageYOffset||0)*rates[i]).toFixed(1)+'px)';}ticking=false;}
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
+  upd();
+})();
