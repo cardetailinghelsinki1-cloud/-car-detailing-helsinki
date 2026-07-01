@@ -82,3 +82,29 @@ if(!reduce){
 }else{
   document.querySelectorAll('.sec-head h2').forEach(h=>h.classList.add('drawn'));
 }
+
+/* Näin se toimii -aikajana: viivan täyttö scrollissa + solmujen aktivointi + korttien reveal */
+(function(){
+  var steps=document.getElementById('howitSteps');if(!steps)return;
+  var fill=steps.querySelector('.howit-line-fill');
+  var nodes=[].slice.call(steps.querySelectorAll('.howit-node'));
+  var cards=[].slice.call(steps.querySelectorAll('.howit-card'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.25});
+    cards.forEach(function(c){io.observe(c);});
+  }else{cards.forEach(function(c){c.classList.add('in');});}
+  function update(){
+    var r=steps.getBoundingClientRect();
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    var anchor=vh*0.55;
+    var h=Math.max(0,Math.min(r.height,anchor-r.top));
+    if(fill)fill.style.height=h+'px';
+    nodes.forEach(function(n){
+      var nr=n.getBoundingClientRect();
+      if((nr.top+nr.height/2)<=anchor)n.classList.add('active');else n.classList.remove('active');
+    });
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
