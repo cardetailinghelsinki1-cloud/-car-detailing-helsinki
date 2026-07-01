@@ -104,7 +104,7 @@ if(!reduce){
   function meander(y){return AMP*Math.sin(y/WAVELEN*Math.PI*2);}
   /* vain kapea kaista ruudun keskellä on suurimmillaan (terävä huippu) */
   function focus(screenY,vh){
-    var d=Math.abs(screenY-vh/2)/(vh*0.26);
+    var d=Math.abs(screenY-vh/2)/(vh*0.36);
     if(d>1)d=1;
     var f=Math.cos(d*Math.PI/2);
     return f*f;
