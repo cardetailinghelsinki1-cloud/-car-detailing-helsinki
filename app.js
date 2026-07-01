@@ -102,11 +102,12 @@ if(!reduce){
   var NODE_BASE=6,NODE_VAR=10;       /* numeropallot: pieni reunalla, kasvavat keskellä */
   var nodeYs=[];
   function meander(y){return AMP*Math.sin(y/WAVELEN*Math.PI*2);}
-  /* keskellä ruutua = 1, ylä-/alareunassa = 0 (pehmeä kosini-lasku) */
+  /* vain kapea kaista ruudun keskellä on suurimmillaan (terävä huippu) */
   function focus(screenY,vh){
-    var d=Math.abs(screenY-vh/2)/(vh*0.5);
+    var d=Math.abs(screenY-vh/2)/(vh*0.26);
     if(d>1)d=1;
-    return Math.cos(d*Math.PI/2);
+    var f=Math.cos(d*Math.PI/2);
+    return f*f;
   }
   function draw(){
     if(!Hcss)return;
