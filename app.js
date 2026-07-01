@@ -96,10 +96,10 @@ if(!reduce){
   if(!canvas||!canvas.getContext)return;
   var ctx=canvas.getContext('2d');
   var dpr=Math.max(1,window.devicePixelRatio||1);
-  var Wcss=72,Hcss=0;
+  var Wcss=78,Hcss=0;
   var SPACING=18,AMP=11,WAVELEN=300;
-  var DOT_BASE=1.6,DOT_VAR=4.6;      /* pallon säde: pieni reunoilla, iso keskellä */
-  var NODE_BASE=12,NODE_VAR=7;       /* numeropallot: samanlaisia mutta suurempia */
+  var DOT_BASE=1.4,DOT_VAR=9;        /* pallon säde: pieni reunoilla, selvästi isompi keskellä */
+  var NODE_BASE=9,NODE_VAR=15;       /* numeropallot: kasvavat reilusti keskellä ruutua */
   var nodeYs=[];
   function meander(y){return AMP*Math.sin(y/WAVELEN*Math.PI*2);}
   /* keskellä ruutua = 1, ylä-/alareunassa = 0 (pehmeä kosini-lasku) */
