@@ -130,7 +130,7 @@ if(!reduce){
       var nx=cx+meander(ny);
       ctx.beginPath();
       ctx.arc(nx,ny,nr,0,Math.PI*2);
-      ctx.fillStyle='rgba(148,164,183,'+(0.55+0.4*nf)+')';
+      ctx.fillStyle='#7FB4FF';
       ctx.fill();
       ctx.fillStyle='#fff';
       ctx.font='700 '+(nr*1.05).toFixed(1)+'px Poppins, system-ui, sans-serif';
