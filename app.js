@@ -175,14 +175,28 @@ if(!reduce){
   setTimeout(resize,400);
 })();
 
-/* Taustan valopallojen kevyt parallax skrollatessa (vain etusivu) */
+
+/* Kuvien kevyt parallax skrollatessa (vain etusivu) – panoroi kuvaa kehyksen sisällä */
 (function(){
-  var orbs=document.querySelector('.bg-orbs');if(!orbs)return;
+  var root=document.querySelector('body.px');if(!root)return;
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  var layers=[].slice.call(orbs.querySelectorAll('.orb-layer'));
-  var rates=[-0.05,-0.10,-0.16];
+  var imgs=[].slice.call(document.querySelectorAll('.px .media img, .px .intro-media img'));
+  if(!imgs.length)return;
+  imgs.forEach(function(im){im.style.willChange='object-position';});
   var ticking=false;
-  function upd(){for(var i=0;i<layers.length;i++){layers[i].style.transform='translateY('+((window.pageYOffset||0)*rates[i]).toFixed(1)+'px)';}ticking=false;}
+  function upd(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    for(var i=0;i<imgs.length;i++){
+      var r=imgs[i].getBoundingClientRect();
+      if(r.bottom<-40||r.top>vh+40)continue;
+      var frac=(r.top+r.height/2)/vh;                 /* 0 = ylhäällä, 1 = alhaalla */
+      if(frac<0)frac=0;else if(frac>1)frac=1;
+      var pos=50+(0.5-frac)*38;                        /* ~31 % … 69 % */
+      imgs[i].style.objectPosition='50% '+pos.toFixed(1)+'%';
+    }
+    ticking=false;
+  }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
+  window.addEventListener('resize',upd);
   upd();
 })();
