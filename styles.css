@@ -247,6 +247,9 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .contact .row .v{font-family:var(--display);font-size:20px;font-weight:600;margin-top:4px;color:#fff}
 .cta-box{background:linear-gradient(155deg,var(--accent) 0%,var(--accent-deep) 100%);border-radius:var(--radius);padding:clamp(30px,4vw,44px);color:#fff;display:flex;flex-direction:column;justify-content:center;box-shadow:0 30px 60px -30px rgba(10,108,224,.6)}
 /* Kiiltävä navy-CTA: sama sävy kuin osion tausta, mutta erottuva lasiefekti */
+.cta-box.cta-lite{background:linear-gradient(155deg,#7FB4FF 0%,#5E9DF0 100%);box-shadow:0 30px 60px -30px rgba(127,180,255,.6);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease}
+.cta-box.cta-lite:hover{transform:scale(1.03);box-shadow:0 42px 80px -32px rgba(94,157,240,.7)}
+@media (prefers-reduced-motion:reduce){.cta-box.cta-lite:hover{transform:none}}
 .cta-box.cta-glossy{position:relative;overflow:hidden;background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.28),rgba(255,255,255,0) 55%),linear-gradient(160deg,#6BA8DD 0%,#5B9BD5 70%);border:1.5px solid #7FB4FF;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 34px 70px -34px rgba(0,0,0,.5)}
 .cta-box.cta-glossy .hh{color:#fff}
 .cta-box.cta-glossy>*{position:relative;z-index:1}
@@ -362,7 +365,7 @@ footer a:hover{color:#7FB4FF}
 .form .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form .radio-group{display:flex;flex-direction:column;gap:10px;margin-top:2px}
 .form .radio{display:flex;align-items:center;gap:10px;font-family:var(--body);font-weight:400;font-size:15px;color:var(--text);cursor:pointer}
-.form .radio input[type=radio]{width:18px;height:18px;padding:0;margin:0;flex:0 0 auto;accent-color:var(--accent);cursor:pointer}
+.form .radio input{width:18px;height:18px;padding:0;margin:0;flex:0 0 auto;accent-color:var(--accent);cursor:pointer}
 @media (max-width:560px){.form .row2{grid-template-columns:1fr}}
 
 /* =======================================================

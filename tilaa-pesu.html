@@ -158,16 +158,17 @@
         <div class="field"><label for="puh">Puhelin</label><input id="puh" type="tel" required></div>
       </div>
       <div class="field"><label for="email">Sähköposti</label><input id="email" type="email"></div>
-      <div class="row2">
-        <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025"></div>
-        <div class="field"><label for="palvelu">Palvelu</label>
-          <select id="palvelu">
-            <option>Auton sisäpuhdistus</option>
-            <option>Auton ulkopesu</option>
-            <option>Sisä- ja ulkopesu</option>
-            <option>Kanta-asiakasohjelma</option>
-            <option>Lisäpalvelu</option>
-          </select>
+      <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025"></div>
+      <div class="field">
+        <label>Palvelu (voit valita monta)</label>
+        <div class="radio-group">
+          <label class="radio"><input type="checkbox" name="palvelu" value="Auton sisäpuhdistus"><span>Auton sisäpuhdistus</span></label>
+          <label class="radio"><input type="checkbox" name="palvelu" value="Auton ulkopesu"><span>Auton ulkopesu</span></label>
+          <label class="radio"><input type="checkbox" name="palvelu" value="Sisä- ja ulkopesu"><span>Sisä- ja ulkopesu</span></label>
+          <label class="radio"><input type="checkbox" name="palvelu" value="Tekstiilipenkkien tekstiilipesu"><span>Tekstiilipenkkien tekstiilipesu</span></label>
+          <label class="radio"><input type="checkbox" name="palvelu" value="Nahkapenkkien pesu ja käsittely"><span>Nahkapenkkien pesu ja käsittely</span></label>
+          <label class="radio"><input type="checkbox" name="palvelu" value="Kumi- ja muoviosien viimeistely"><span>Kumi- ja muoviosien viimeistely</span></label>
+          <label class="radio"><input type="checkbox" name="palvelu" value="Lemmikkien karvojen poisto"><span>Lemmikkien karvojen poisto</span></label>
         </div>
       </div>
       <div class="field"><label for="osoite">Osoite (missä auto pestään)</label><input id="osoite" type="text"></div>
@@ -185,7 +186,7 @@
     </form>
   </div>
   <div>
-    <div class="cta-box" style="background:linear-gradient(155deg,#7FB4FF 0%,#5E9DF0 100%);box-shadow:0 30px 60px -30px rgba(127,180,255,.6)">
+    <div class="cta-box cta-lite">
       <h2>Soita tai laita <span class="hh">viestiä</span></h2>
       <p>Vastaamme nopeasti ja ystävällisesti.</p>
       <div class="cta-row" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px">
@@ -207,7 +208,8 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   var g=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
   var yhtEl=document.querySelector('input[name="yhteystapa"]:checked');
   var yht=encodeURIComponent(yhtEl?yhtEl.value:'');
-  var body="Nimi: "+g('nimi')+"%0D%0APuhelin: "+g('puh')+"%0D%0ASähköposti: "+g('email')+"%0D%0AAuto: "+g('auto')+"%0D%0APalvelu: "+g('palvelu')+"%0D%0AOsoite: "+g('osoite')+"%0D%0AYhteydenottotapa: "+yht+"%0D%0ALisätiedot: "+g('viesti');
+  var palvelut=[].slice.call(document.querySelectorAll('input[name="palvelu"]:checked')).map(function(c){return c.value;}).join(', ');
+  var body="Nimi: "+g('nimi')+"%0D%0APuhelin: "+g('puh')+"%0D%0ASähköposti: "+g('email')+"%0D%0AAuto: "+g('auto')+"%0D%0APalvelu: "+encodeURIComponent(palvelut)+"%0D%0AOsoite: "+g('osoite')+"%0D%0AYhteydenottotapa: "+yht+"%0D%0ALisätiedot: "+g('viesti');
   window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("Tilaus / tarjouspyyntö")+"&body="+body;
 });
 </script>
