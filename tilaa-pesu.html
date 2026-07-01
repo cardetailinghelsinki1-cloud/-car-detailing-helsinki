@@ -33,7 +33,7 @@
     </nav>
     <div class="nav-cta">
       <a class="btn btn-ghost" href="tilaa-pesu.html">Jätä soittopyyntö</a>
-      <a class="btn btn-primary" href="tilaa-pesu.html">Hanki tarjous</a>
+      <a class="btn btn-primary" href="tilaa-pesu.html#tarjous">Hanki tarjous</a>
       
       <button class="menu-btn" id="menuBtn" aria-label="Valikko"><span></span><span></span><span></span></button>
     </div>
@@ -101,7 +101,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:clamp(36px,5vw,56px)">
-      <a class="btn btn-primary" href="#orderForm" style="padding:16px 34px">Hanki tarjous <span class="arr">→</span></a>
+      <a class="btn btn-primary" href="#tarjous" style="padding:16px 34px">Hanki tarjous <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -147,10 +147,10 @@
     </div>
   </div>
 </section>
-<section><div class="wrap split">
+<section id="tarjous"><div class="wrap split">
   <div class="copy">
-    <span class="eyebrow">Yhteydenotto</span>
-    <h2>Lähetä <span class="hh">yhteydenottopyyntö</span></h2>
+    <span class="eyebrow">Tarjouspyyntö</span>
+    <h2>Hanki <span class="hh">tarjous</span></h2>
     <p>Täytä lomake, niin olemme sinuun yhteydessä mahdollisimman pian tarjouksen ja sopivan ajan kanssa.</p>
     <form class="form" id="orderForm" style="margin-top:24px">
       <div class="row2">
@@ -226,7 +226,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
       <p class="muted" style="margin-top:14px">Jätä yhteydenottopyyntö, niin olemme sinuun yhteydessä mahdollisimman pian.</p>
       <div class="cta-row" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:26px">
         <a class="btn btn-primary" href="tel:+358442300456">Soita nyt</a>
-        <a class="btn btn-ghost inv" href="tilaa-pesu.html">Hanki tarjous</a>
+        <a class="btn btn-ghost inv" href="tilaa-pesu.html#tarjous">Hanki tarjous</a>
       </div>
     </div>
   </div>
