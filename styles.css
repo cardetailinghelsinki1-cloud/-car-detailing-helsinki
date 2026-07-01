@@ -170,8 +170,16 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .reason .num{font-family:var(--display);font-size:14px;font-weight:700;color:var(--accent-lite)}
 .reason-ico{width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(10,61,98,.45);display:grid;place-items:center;color:var(--head)}
 .reason-ico svg{width:24px;height:24px}
-.reason h3{font-size:20px;margin-top:14px;font-weight:700}
+.reason h3{font-size:20px;margin-top:14px;font-weight:800;color:var(--head)}
 .reason p{color:var(--muted);font-size:15.5px;margin-top:10px}
+/* Viisi syytä vierekkäin (ulkopesun "Miksi käsinpesu") */
+.reasons.reasons5{grid-template-columns:repeat(5,1fr)}
+.reasons.reasons5 .reason{padding:24px 20px}
+.reasons.reasons5 .reason h3{font-size:18px}
+.reasons.reasons5 .reason p{font-size:14.5px}
+@media (max-width:1100px){.reasons.reasons5{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.reasons.reasons5{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.reasons.reasons5{grid-template-columns:1fr}}
 
 .pill{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent-deep);border:1px solid rgba(10,108,224,.22);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600;font-family:var(--display);letter-spacing:.04em}
 /* Myyntivaltti-merkki: korostettu "Ainoa laatuaan Suomessa" */
