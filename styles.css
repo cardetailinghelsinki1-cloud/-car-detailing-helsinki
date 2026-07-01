@@ -477,9 +477,9 @@ footer a:hover{color:#7FB4FF}
 .howit-head h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.6vw,48px);color:var(--head);margin-top:12px}
 .howit-head p{color:var(--muted);font-size:17px;margin-top:16px}
 .howit-steps{position:relative;max-width:940px;margin:0 auto;--linex:50%}
-.howit-steps::before{content:"";position:absolute;left:var(--linex);top:8px;bottom:8px;width:3px;transform:translateX(-50%);background:var(--line);border-radius:2px}
-.howit-line-fill{position:absolute;left:var(--linex);top:8px;width:3px;height:0;transform:translateX(-50%);background:linear-gradient(#7FB4FF,#5B9BD5);border-radius:2px;z-index:1;transition:height .15s linear}
-.howit-step{position:relative;display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;margin-bottom:clamp(24px,3.5vw,48px)}
+.howit-path{position:absolute;left:var(--linex);top:0;transform:translateX(-50%);z-index:1;pointer-events:none}
+.howit-node{display:none}
+.howit-step{position:relative;z-index:2;display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;margin-bottom:clamp(24px,3.5vw,48px)}
 .howit-step:last-child{margin-bottom:0}
 .howit-card{grid-column:1;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px 26px 28px;box-shadow:0 20px 46px -32px rgba(11,26,43,.45);opacity:0;transform:translateX(-28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .howit-step.right .howit-card{grid-column:3;transform:translateX(28px)}

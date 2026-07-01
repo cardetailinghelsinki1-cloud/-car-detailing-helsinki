@@ -83,28 +83,48 @@ if(!reduce){
   document.querySelectorAll('.sec-head h2').forEach(h=>h.classList.add('drawn'));
 }
 
-/* Näin se toimii -aikajana: viivan täyttö scrollissa + solmujen aktivointi + korttien reveal */
+/* Näin se toimii: mutkitteleva pallopolku (koot aaltoilevat skrollatessa) + korttien reveal */
 (function(){
   var steps=document.getElementById('howitSteps');if(!steps)return;
-  var fill=steps.querySelector('.howit-line-fill');
-  var nodes=[].slice.call(steps.querySelectorAll('.howit-node'));
   var cards=[].slice.call(steps.querySelectorAll('.howit-card'));
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.25});
     cards.forEach(function(c){io.observe(c);});
   }else{cards.forEach(function(c){c.classList.add('in');});}
-  function update(){
-    var r=steps.getBoundingClientRect();
-    var vh=window.innerHeight||document.documentElement.clientHeight;
-    var anchor=vh*0.55;
-    var h=Math.max(0,Math.min(r.height,anchor-r.top));
-    if(fill)fill.style.height=h+'px';
-    nodes.forEach(function(n){
-      var nr=n.getBoundingClientRect();
-      if((nr.top+nr.height/2)<=anchor)n.classList.add('active');else n.classList.remove('active');
-    });
+  var canvas=document.getElementById('howitPath');
+  if(!canvas||!canvas.getContext)return;
+  var ctx=canvas.getContext('2d');
+  var dpr=Math.max(1,window.devicePixelRatio||1);
+  var Wcss=72,Hcss=0;
+  var SPACING=19,AMP=20,WAVELEN=190,BASE=2.8,VAR=3.4,SIZEWAVE=70;
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function draw(){
+    if(!Hcss)return;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,Wcss,Hcss);
+    var cx=Wcss/2;
+    var scroll=window.pageYOffset||document.documentElement.scrollTop||0;
+    var phase=reduced?0:scroll/55;
+    for(var y=SPACING/2;y<Hcss;y+=SPACING){
+      var x=cx+AMP*Math.sin(y/WAVELEN*Math.PI*2);
+      var t=0.5+0.5*Math.sin(y/SIZEWAVE+phase);
+      var r=BASE+VAR*t;
+      ctx.beginPath();
+      ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fillStyle='rgba(148,164,183,'+(0.32+0.55*t)+')';
+      ctx.fill();
+    }
   }
-  window.addEventListener('scroll',update,{passive:true});
-  window.addEventListener('resize',update);
-  update();
+  function resize(){
+    Hcss=steps.offsetHeight;
+    canvas.style.width=Wcss+'px';canvas.style.height=Hcss+'px';
+    canvas.width=Math.round(Wcss*dpr);canvas.height=Math.round(Hcss*dpr);
+    draw();
+  }
+  var ticking=false;
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(function(){draw();ticking=false;});}}
+  if(!reduced)window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',resize);
+  resize();
+  setTimeout(resize,400);
 })();
