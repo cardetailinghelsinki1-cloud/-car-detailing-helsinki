@@ -98,8 +98,8 @@ if(!reduce){
   var dpr=Math.max(1,window.devicePixelRatio||1);
   var Wcss=78,Hcss=0;
   var SPACING=18,AMP=11,WAVELEN=300;
-  var DOT_BASE=1.4,DOT_VAR=9;        /* pallon säde: pieni reunoilla, selvästi isompi keskellä */
-  var NODE_BASE=9,NODE_VAR=15;       /* numeropallot: kasvavat reilusti keskellä ruutua */
+  var DOT_BASE=0.6,DOT_VAR=9;        /* pallon säde: hyvin pieni reunoilla, iso keskellä */
+  var NODE_BASE=6,NODE_VAR=15;       /* numeropallot: pieni reunalla, kasvavat reilusti keskellä */
   var nodeYs=[];
   function meander(y){return AMP*Math.sin(y/WAVELEN*Math.PI*2);}
   /* keskellä ruutua = 1, ylä-/alareunassa = 0 (pehmeä kosini-lasku) */
