@@ -101,6 +101,8 @@ if(!reduce){
   var DOT_BASE=0.6,DOT_VAR=6.5;      /* pallon säde: hyvin pieni reunoilla, kohtuullinen keskellä */
   var NODE_BASE=6,NODE_VAR=10;       /* numeropallot: pieni reunalla, kasvavat keskellä */
   var nodeYs=[];
+  var hoverF=cards.map(function(){return 0;});
+  var hoverTarget=cards.map(function(){return 0;});
   function meander(y){return AMP*Math.sin(y/WAVELEN*Math.PI*2);}
   /* vain kapea kaista ruudun keskellä on suurimmillaan (terävä huippu) */
   function focus(screenY,vh){
@@ -127,7 +129,7 @@ if(!reduce){
     for(var i=0;i<nodeYs.length;i++){
       var ny=nodeYs[i];
       var nf=focus(top+ny,vh);
-      var nr=NODE_BASE+NODE_VAR*nf;
+      var nr=(NODE_BASE+NODE_VAR*nf)*(1+0.5*(hoverF[i]||0));
       var nx=cx+meander(ny);
       ctx.beginPath();
       ctx.arc(nx,ny,nr,0,Math.PI*2);
@@ -153,6 +155,22 @@ if(!reduce){
   function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(function(){draw();ticking=false;});}}
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',resize);
+  /* Kortin hover suurentaa myös vastaavan numeropallon (samaan aikaan) */
+  var hoverRAF=null;
+  function hoverStep(){
+    var moving=false;
+    for(var i=0;i<hoverF.length;i++){
+      var diff=hoverTarget[i]-hoverF[i];
+      if(Math.abs(diff)>0.004){hoverF[i]+=diff*0.22;moving=true;}else{hoverF[i]=hoverTarget[i];}
+    }
+    draw();
+    hoverRAF=moving?requestAnimationFrame(hoverStep):null;
+  }
+  function startHover(){if(!hoverRAF)hoverStep();}
+  cards.forEach(function(c,i){
+    c.addEventListener('mouseenter',function(){hoverTarget[i]=1;startHover();});
+    c.addEventListener('mouseleave',function(){hoverTarget[i]=0;startHover();});
+  });
   resize();
   setTimeout(resize,400);
 })();

@@ -480,9 +480,10 @@ footer a:hover{color:#7FB4FF}
 .howit-path{position:absolute;left:var(--linex);top:0;transform:translateX(-50%);z-index:1;pointer-events:none}
 .howit-step{position:relative;z-index:2;display:grid;grid-template-columns:1fr 72px 1fr;align-items:center;margin-bottom:clamp(24px,3.5vw,48px)}
 .howit-step:last-child{margin-bottom:0}
-.howit-card{grid-column:1;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px 26px 28px;box-shadow:0 20px 46px -32px rgba(11,26,43,.45);opacity:0;transform:translateX(-28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.howit-card{grid-column:1;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px 26px 28px;box-shadow:0 20px 46px -32px rgba(11,26,43,.45);opacity:0;transform:translateX(-28px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease}
 .howit-step.right .howit-card{grid-column:3;transform:translateX(28px)}
 .howit-card.in{opacity:1;transform:none}
+.howit-card.in:hover{transform:scale(1.045);box-shadow:0 30px 60px -30px rgba(11,26,43,.5)}
 .howit-node{position:absolute;z-index:3;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;transform:translate(-50%,-50%);background:#fff;border:2px solid var(--line);color:var(--muted);font-family:var(--display);font-weight:700;font-size:15px;box-shadow:0 6px 16px -6px rgba(11,26,43,.35);transition:background .35s,color .35s,border-color .35s,box-shadow .35s}
 .howit-node.active{background:#5B9BD5;border-color:#5B9BD5;color:#fff;box-shadow:0 8px 22px -6px rgba(91,155,213,.6)}
 .howit-ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#eaf1ff,#dbe7ff);color:#5B9BD5;margin-bottom:16px}
