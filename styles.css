@@ -356,6 +356,10 @@ footer a:hover{color:#7FB4FF}
 .anchor{scroll-margin-top:90px}
 
 /* lomake (tilaa pesu) */
+/* Tarjouspyyntö valkoisessa kortissa (hover erottaa taustasta) */
+.tarjous-card{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:clamp(26px,4vw,56px);box-shadow:0 26px 60px -42px rgba(11,26,43,.42);transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .3s}
+.tarjous-card:hover{transform:translateY(-5px);box-shadow:0 46px 90px -40px rgba(11,26,43,.5);border-color:#dfe6ee}
+@media (prefers-reduced-motion:reduce){.tarjous-card:hover{transform:none}}
 .form{display:grid;gap:16px;max-width:560px}
 .form .field{display:flex;flex-direction:column;gap:6px}
 .form label{font-family:var(--display);font-weight:600;font-size:13px;color:var(--ink)}
