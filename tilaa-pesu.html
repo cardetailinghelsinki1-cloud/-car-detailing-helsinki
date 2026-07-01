@@ -159,7 +159,7 @@
       </div>
       <div class="field"><label for="email">Sähköposti</label><input id="email" type="email"></div>
       <div class="row2">
-        <div class="field"><label for="auto">Auton malli</label><input id="auto" type="text"></div>
+        <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025"></div>
         <div class="field"><label for="palvelu">Palvelu</label>
           <select id="palvelu">
             <option>Auton sisäpuhdistus</option>
@@ -171,13 +171,21 @@
         </div>
       </div>
       <div class="field"><label for="osoite">Osoite (missä auto pestään)</label><input id="osoite" type="text"></div>
+      <div class="field">
+        <label>Haluan, että minuun otetaan yhteyttä</label>
+        <div class="radio-group">
+          <label class="radio"><input type="radio" name="yhteystapa" value="Puhelimitse seuraavan 24h sisällä" checked><span>Puhelimitse seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Tekstiviestitse seuraavan 24h sisällä"><span>Tekstiviestitse seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Kummalla tahansa tavalla seuraavan 24h sisällä"><span>Kummalla tahansa tavalla seuraavan 24h sisällä</span></label>
+        </div>
+      </div>
       <div class="field"><label for="viesti">Lisätiedot</label><textarea id="viesti"></textarea></div>
       <button class="btn btn-primary" type="submit" style="justify-content:center">Lähetä pyyntö →</button>
       <p style="font-size:13px;color:var(--muted);margin:0">Lomake avaa sähköpostiohjelmasi valmiilla viestillä. Voit myös soittaa tai laittaa viestiä suoraan.</p>
     </form>
   </div>
   <div>
-    <div class="cta-box">
+    <div class="cta-box" style="background:linear-gradient(155deg,#7FB4FF 0%,#5E9DF0 100%);box-shadow:0 30px 60px -30px rgba(127,180,255,.6)">
       <h2>Soita tai laita <span class="hh">viestiä</span></h2>
       <p>Vastaamme nopeasti ja ystävällisesti.</p>
       <div class="cta-row" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px">
@@ -197,7 +205,9 @@
 document.getElementById('orderForm').addEventListener('submit',function(e){
   e.preventDefault();
   var g=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
-  var body="Nimi: "+g('nimi')+"%0D%0APuhelin: "+g('puh')+"%0D%0ASähköposti: "+g('email')+"%0D%0AAuto: "+g('auto')+"%0D%0APalvelu: "+g('palvelu')+"%0D%0AOsoite: "+g('osoite')+"%0D%0ALisätiedot: "+g('viesti');
+  var yhtEl=document.querySelector('input[name="yhteystapa"]:checked');
+  var yht=encodeURIComponent(yhtEl?yhtEl.value:'');
+  var body="Nimi: "+g('nimi')+"%0D%0APuhelin: "+g('puh')+"%0D%0ASähköposti: "+g('email')+"%0D%0AAuto: "+g('auto')+"%0D%0APalvelu: "+g('palvelu')+"%0D%0AOsoite: "+g('osoite')+"%0D%0AYhteydenottotapa: "+yht+"%0D%0ALisätiedot: "+g('viesti');
   window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("Tilaus / tarjouspyyntö")+"&body="+body;
 });
 </script>
