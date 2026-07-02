@@ -28,10 +28,8 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:var(--body);color:var(--text);background:var(--paper);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-/* Skroll-parallax pistekuvio osioiden taustalle (vain etusivu, .px) */
-.px section:not(.hero){position:relative;isolation:isolate}
-.px section:not(.hero)::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(10,61,98,.06) 1.3px,transparent 1.6px);background-size:26px 26px;background-position:0 var(--gy,0px)}
-.px .band-dark::before{background-image:radial-gradient(rgba(255,255,255,.08) 1.3px,transparent 1.6px)}
+/* 3D-rotaatio skrollatessa: osiot kaartuvat kuin pyöreän pilarin ympärille (vain etusivu) */
+.px section:not(.hero){will-change:transform;backface-visibility:hidden}
 h1,h2,h3{margin:0;font-family:var(--display);line-height:1.08;letter-spacing:-.02em;font-weight:700}
 p{margin:0}
 a{color:inherit;text-decoration:none}
