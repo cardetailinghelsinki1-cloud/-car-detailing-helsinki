@@ -25,8 +25,9 @@
   --body:"Open Sans",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--body);color:var(--text);background:var(--paper);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;overflow-x:clip}
+/* estä vaakavieritys: reveal-animaatioiden translateX-alkutila ei saa työntää sivua leveämmäksi */
+body{margin:0;font-family:var(--body);color:var(--text);background:var(--paper);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
 h1,h2,h3{margin:0;font-family:var(--display);line-height:1.08;letter-spacing:-.02em;font-weight:700}
 p{margin:0}
 a{color:inherit;text-decoration:none}
@@ -132,8 +133,11 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
 .split.rev{grid-template-columns:.95fr 1.05fr}
+.split.intro-split{grid-template-columns:1.05fr .95fr}
 .split .copy h2{font-size:clamp(26px,4.2vw,44px);margin-top:14px;font-weight:800}
+.split .copy{min-width:0}
 .split .copy p{color:var(--muted);margin-top:16px}
+.scaleh{overflow-wrap:break-word}
 .split .copy p+p{margin-top:12px}
 .split .copy .btn{margin-top:26px}
 .band-dark .split .copy p{color:var(--muted-inv)}
