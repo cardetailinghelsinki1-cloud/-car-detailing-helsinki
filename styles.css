@@ -437,9 +437,9 @@ footer a:hover{color:#7FB4FF}
   .hero-inner{grid-template-columns:1fr;gap:30px}
   .hero-card{max-width:520px}
 }
-/* Puhelimella hieman enemmän tilaa heron reunoihin (teksti ei osu näytön reunoihin) */
+/* Puhelimella hieman enemmän tilaa herojen reunoihin (teksti ei osu näytön reunoihin) */
 @media (max-width:600px){
-  .hero .hero-inner,.hero .hero-points{padding-inline:26px}
+  .hero .hero-inner,.hero .hero-points,.page-hero .inner{padding-inline:26px}
 }
 
 /* HERO otsikon värit + alleviivausanimaatio (82rentals-tyyli) */
