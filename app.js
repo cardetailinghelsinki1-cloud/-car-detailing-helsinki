@@ -207,19 +207,19 @@ if(!reduce){
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
   if(!secs.length)return;
-  var MAX=8;      /* maksimikallistus asteina */
+  var MAX=17;     /* maksimikallistus asteina */
   var ticking=false;
   function upd(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
     var mid=vh/2;
     for(var i=0;i<secs.length;i++){
       var r=secs[i].getBoundingClientRect();
-      if(r.bottom<-120||r.top>vh+120){continue;}
+      if(r.bottom<-160||r.top>vh+160){continue;}
       var pos=((r.top+r.height/2)-mid)/mid;          /* -1 ylhäällä … +1 alhaalla */
       if(pos>1.3)pos=1.3;else if(pos<-1.3)pos=-1.3;
       var deg=(-pos*MAX);                             /* keskellä 0°, reunoilla kaartuu taakse */
-      var sc=(1-Math.min(Math.abs(pos),1)*0.03).toFixed(4);
-      secs[i].style.transform='perspective(1600px) rotateX('+deg.toFixed(2)+'deg) scale('+sc+')';
+      var sc=(1-Math.min(Math.abs(pos),1)*0.06).toFixed(4);
+      secs[i].style.transform='perspective(1150px) rotateX('+deg.toFixed(2)+'deg) scale('+sc+')';
     }
     ticking=false;
   }
