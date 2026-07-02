@@ -200,3 +200,24 @@ if(!reduce){
   window.addEventListener('resize',upd);
   upd();
 })();
+
+/* Osioiden taustakuvion kevyt parallax skrollatessa (vain etusivu) */
+(function(){
+  if(!document.querySelector('body.px'))return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
+  if(!secs.length)return;
+  var ticking=false;
+  function upd(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    for(var i=0;i<secs.length;i++){
+      var r=secs[i].getBoundingClientRect();
+      if(r.bottom<0||r.top>vh)continue;
+      secs[i].style.setProperty('--gy',((vh-r.top)*0.09).toFixed(1)+'px');
+    }
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
+  window.addEventListener('resize',upd);
+  upd();
+})();
