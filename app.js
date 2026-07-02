@@ -206,19 +206,21 @@ if(!reduce){
   if(!document.querySelector('body.px'))return;
   var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
   if(!secs.length)return;
-  var MAX=17;     /* maksimikallistus asteina */
+  var MAX=20;     /* maksimikierto asteina (pyöreä pylväs) */
+  var SHIFT=70;   /* vaakasiirtymä px (oikea ala -> vasen ylä) */
   var ticking=false;
   function upd(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
     var mid=vh/2;
     for(var i=0;i<secs.length;i++){
       var r=secs[i].getBoundingClientRect();
-      if(r.bottom<-160||r.top>vh+160){continue;}
+      if(r.bottom<-200||r.top>vh+200){continue;}
       var pos=((r.top+r.height/2)-mid)/mid;          /* -1 ylhäällä … +1 alhaalla */
       if(pos>1.3)pos=1.3;else if(pos<-1.3)pos=-1.3;
-      var deg=(-pos*MAX);                             /* keskellä 0°, reunoilla kaartuu taakse */
+      var tx=(pos*SHIFT).toFixed(1);                 /* alhaalla oikealla, ylhäällä vasemmalla */
+      var deg=(pos*MAX).toFixed(2);                  /* kierto oikea-ala <-> vasen-ylä -akselin ympäri */
       var sc=(1-Math.min(Math.abs(pos),1)*0.06).toFixed(4);
-      secs[i].style.transform='perspective(1150px) rotateX('+deg.toFixed(2)+'deg) scale('+sc+')';
+      secs[i].style.transform='perspective(1200px) translateX('+tx+'px) rotate3d(1,-1,0,'+deg+'deg) scale('+sc+')';
     }
     ticking=false;
   }
