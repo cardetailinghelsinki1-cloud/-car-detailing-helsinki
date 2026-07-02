@@ -174,3 +174,29 @@ if(!reduce){
   resize();
   setTimeout(resize,400);
 })();
+
+/* Otsikon rivit suurenevat, kun rivi osuu keskelle ruutua skrollatessa (kolme itsenäistä riviä) */
+(function(){
+  var lines=[].slice.call(document.querySelectorAll('.scaleh .sl'));
+  if(!lines.length)return;
+  var AMP=0.10;   /* enimmäissuurennos (10 %) – ei niin paljon että rivit menisivät päällekkäin */
+  var ticking=false;
+  function upd(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    var mid=vh/2;
+    var narrow=(window.innerWidth||document.documentElement.clientWidth)<=760; /* kapealla näytöllä otsikko täyttää leveyden -> ei suurenneta (ei vaakavieritystä) */
+    for(var i=0;i<lines.length;i++){
+      if(narrow){lines[i].style.transform='scale(1)';continue;}
+      var r=lines[i].getBoundingClientRect();
+      var c=r.top+r.height/2;
+      var t=1-Math.abs(c-mid)/(vh*0.5);          /* 1 kun rivi keskellä, 0 kun ½ ruutua etäällä */
+      if(t<0)t=0;else if(t>1)t=1;
+      var e=t*t*(3-2*t);                          /* pehmeä (smoothstep) */
+      lines[i].style.transform='scale('+(1+AMP*e).toFixed(3)+')';
+    }
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
+  window.addEventListener('resize',upd);
+  upd();
+})();
