@@ -201,27 +201,46 @@ if(!reduce){
   upd();
 })();
 
-/* Sivu liukuu skrollatessa vinosti oikeasta alakulmasta vasempaan yläkulmaan – vain etusivu */
+/* Sivu on kietoutunut pyöreän pylvään ympärille: liukuu vinosti (oikea-ala → vasen-ylä)
+   ja taittuu pehmeästi pylvään pyöreään pintaan – vain etusivu */
 (function(){
   if(!document.querySelector('body.px'))return;
   var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
   if(!secs.length)return;
-  var SHIFT=110;  /* kuinka paljon (px) osio liukuu vinosti keskikohdasta reunoille */
-  var ticking=false;
-  function upd(){
+  var SHIFT=90;   /* vino liuku (px) keskikohdasta reunoille */
+  var MAX=22;     /* taittokulma asteina (pylvään pinnan kaari) */
+  var DEPTH=220;  /* kuinka syvälle reunat vetäytyvät pylvään pinnalle (px) */
+  var cur=[];     /* nykyiset (pehmennetyt) arvot per osio */
+  var tgt=[];     /* tavoitearvot skrollista */
+  for(var k=0;k<secs.length;k++){cur[k]={d:0,deg:0,z:0};tgt[k]={d:0,deg:0,z:0};}
+  var raf=0,active=false;
+  function measure(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
     var mid=vh/2;
     for(var i=0;i<secs.length;i++){
       var r=secs[i].getBoundingClientRect();
-      if(r.bottom<-200||r.top>vh+200){continue;}
+      if(r.bottom<-260||r.top>vh+260){tgt[i]=null;continue;}
       var pos=((r.top+r.height/2)-mid)/mid;          /* +1 alhaalla … -1 ylhäällä */
       if(pos>1.3)pos=1.3;else if(pos<-1.3)pos=-1.3;
-      var d=(pos*SHIFT).toFixed(1);                  /* alhaalla oikea-ala (+), ylhäällä vasen-ylä (−) */
-      secs[i].style.transform='translate('+d+'px,'+d+'px)';
+      var a=Math.min(Math.abs(pos),1);
+      tgt[i]={d:pos*SHIFT, deg:-pos*MAX, z:-a*a*DEPTH};
     }
-    ticking=false;
   }
-  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
-  window.addEventListener('resize',upd);
-  upd();
+  function frame(){
+    var moving=false;
+    for(var i=0;i<secs.length;i++){
+      var t=tgt[i]; if(!t){continue;}
+      var c=cur[i];
+      c.d  += (t.d  - c.d )*0.14;                     /* pehmeä seuraus (lerp) */
+      c.deg+= (t.deg- c.deg)*0.14;
+      c.z  += (t.z  - c.z )*0.14;
+      if(Math.abs(t.d-c.d)>0.1||Math.abs(t.deg-c.deg)>0.05||Math.abs(t.z-c.z)>0.5)moving=true;
+      secs[i].style.transform='perspective(1200px) translate3d('+c.d.toFixed(2)+'px,'+c.d.toFixed(2)+'px,'+c.z.toFixed(1)+'px) rotateX('+c.deg.toFixed(2)+'deg)';
+    }
+    if(moving){raf=requestAnimationFrame(frame);}else{active=false;}
+  }
+  function kick(){measure();if(!active){active=true;raf=requestAnimationFrame(frame);}}
+  window.addEventListener('scroll',kick,{passive:true});
+  window.addEventListener('resize',kick);
+  kick();
 })();
