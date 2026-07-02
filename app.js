@@ -178,9 +178,7 @@ if(!reduce){
 /* Jokaisen osion otsikko suurenee, kun se osuu keskelle ruutua skrollatessa.
    Monirivinen otsikko jaetaan riveihin -> rivit suurenevat eri aikaan. */
 (function(){
-  var heads=[].slice.call(document.querySelectorAll('h2')).filter(function(h){
-    return !h.closest('.hero');                    /* hero pysyy koskemattomana */
-  });
+  var heads=[].slice.call(document.querySelectorAll('h1, h2'));
   if(!heads.length)return;
   var AMP=0.09;    /* enimmäissuurennos (9 %) – ei niin paljon että rivit menisivät päällekkäin */
   var lines=[];    /* kaikki .sl-rivit kaikista otsikoista */
@@ -200,6 +198,7 @@ if(!reduce){
             for(var m=0;m<subs.length;m++)words.push({t:subs[m],c:cls});
           }
         }else if(n.nodeType===1){
+          if(n.tagName==='BR'){words.push({br:true});continue;}   /* pakotettu rivinvaihto */
           var nc=(cls?cls+' ':'')+(n.getAttribute('class')||'');
           walk(n,nc.trim());
         }
@@ -214,19 +213,20 @@ if(!reduce){
     var toks=tokenize(h);
     h.classList.add('hscale');
     h.textContent='';
-    var wspans=[];
+    var wspans=[],brBefore=[],pendingBr=false;
     for(var i=0;i<toks.length;i++){
       if(toks[i]===null){h.appendChild(document.createTextNode(' '));continue;}  /* alkuperäinen väli */
+      if(toks[i].br){pendingBr=true;continue;}      /* pakotettu rivinvaihto seuraavan sanan eteen */
       var s=document.createElement('span');
       s.textContent=toks[i].t;
       if(toks[i].c)s.className=toks[i].c;           /* esim. hh (korostusväri) */
-      h.appendChild(s);wspans.push(s);
+      h.appendChild(s);wspans.push(s);brBefore.push(pendingBr);pendingBr=false;
     }
-    /* ryhmittele saman rivin (sama offsetTop) sanat */
+    /* ryhmittele saman rivin (sama offsetTop) sanat – tai pakotettu rivinvaihto */
     var groups=[],cur=null,top=null;
     for(var k=0;k<wspans.length;k++){
       var ot=wspans[k].offsetTop;
-      if(cur===null||Math.abs(ot-top)>3){cur=[];groups.push(cur);top=ot;}
+      if(cur===null||brBefore[k]||Math.abs(ot-top)>3){cur=[];groups.push(cur);top=ot;}
       cur.push(wspans[k]);
     }
     /* kääri jokaisen rivin DOM-alue (sanat + niiden väliset välit) omaan .sl-lohkoonsa */
