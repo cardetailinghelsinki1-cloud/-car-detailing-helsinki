@@ -204,7 +204,6 @@ if(!reduce){
 /* Osiot kaartuvat 3D:ssä skrollatessa (kuin pyöreän pilarin ympärillä) – vain etusivu */
 (function(){
   if(!document.querySelector('body.px'))return;
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
   if(!secs.length)return;
   var MAX=17;     /* maksimikallistus asteina */
