@@ -137,7 +137,6 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .split .copy h2{font-size:clamp(26px,4.2vw,44px);margin-top:14px;font-weight:800}
 .split .copy{min-width:0}
 .split .copy p{color:var(--muted);margin-top:16px}
-.scaleh{overflow-wrap:break-word}
 .split .copy p+p{margin-top:12px}
 .split .copy .btn{margin-top:26px}
 .band-dark .split .copy p{color:var(--muted-inv)}
@@ -152,8 +151,8 @@ section{padding-block:clamp(60px,8.5vw,104px)}
 .intro-media:hover img{transform:scale(1.04)}
 @media (max-width:760px){.intro-media{min-height:240px}}
 /* Otsikon rivit suurenevat, kun rivi on keskellä ruutua skrollatessa (jokainen rivi omansa) */
-.scaleh{display:block}
-.scaleh .sl{display:block;transform-origin:left center;transform:scale(1);will-change:transform}
+.hscale{line-height:1.14}
+.hscale .sl{display:block;transform:scale(1);will-change:transform}
 
 .cta-inline{margin-top:30px}
 
