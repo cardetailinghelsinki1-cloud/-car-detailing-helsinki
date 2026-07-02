@@ -230,7 +230,7 @@ if(!reduce){
       cur.push(wspans[k]);
     }
     /* kääri jokaisen rivin DOM-alue (sanat + niiden väliset välit) omaan .sl-lohkoonsa */
-    var align=(getComputedStyle(h).textAlign==='center')?'center':'left';
+    var align=(getComputedStyle(h).textAlign==='center')?'center':'left';   /* origo tekstin tasauksen mukaan, ettei teksti leikkaudu reunasta */
     var sls=[];
     for(var g=0;g<groups.length;g++){
       var first=groups[g][0],last=groups[g][groups[g].length-1];
@@ -258,15 +258,15 @@ if(!reduce){
   function upd(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
     var mid=vh/2;
-    var narrow=(window.innerWidth||document.documentElement.clientWidth)<=760; /* kapealla näytöllä ei suurenneta */
+    var narrow=(window.innerWidth||document.documentElement.clientWidth)<=760;
+    var amp=narrow?0.05:AMP;                        /* puhelimella hillitympi suurennos, ettei teksti leikkaudu reunoista */
     for(var i=0;i<lines.length;i++){
-      if(narrow){lines[i].style.transform='scale(1)';continue;}
       var r=lines[i].getBoundingClientRect();
       var c=r.top+r.height/2;
       var t=1-Math.abs(c-mid)/(vh*0.5);            /* 1 kun rivi keskellä, 0 kun ½ ruutua etäällä */
       if(t<0)t=0;else if(t>1)t=1;
       var e=t*t*(3-2*t);                            /* pehmeä (smoothstep) */
-      lines[i].style.transform='scale('+(1+AMP*e).toFixed(3)+')';
+      lines[i].style.transform='scale('+(1+amp*e).toFixed(3)+')';
     }
     ticking=false;
   }
