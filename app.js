@@ -201,14 +201,14 @@ if(!reduce){
   upd();
 })();
 
-/* Sivu on kietoutunut pyöreän pylvään ympärille: liukuu vinosti (oikea-ala → vasen-ylä)
-   ja taittuu pehmeästi pylvään pyöreään pintaan – vain etusivu */
+/* Sivu on kietoutunut PYSTYSUUNTAISEN pyöreän pylvään ympärille (kuin parkkihallin tukipilari):
+   liukuu vinosti (oikea-ala → vasen-ylä) ja taittuu pehmeästi pylvään pintaan pystyakselin ympäri – vain etusivu */
 (function(){
   if(!document.querySelector('body.px'))return;
   var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
   if(!secs.length)return;
   var SHIFT=90;   /* vino liuku (px) keskikohdasta reunoille */
-  var MAX=22;     /* taittokulma asteina (pylvään pinnan kaari) */
+  var MAX=22;     /* taittokulma asteina (pylvään pinnan kaari, pystyakselin ympäri) */
   var DEPTH=220;  /* kuinka syvälle reunat vetäytyvät pylvään pinnalle (px) */
   var cur=[];     /* nykyiset (pehmennetyt) arvot per osio */
   var tgt=[];     /* tavoitearvot skrollista */
@@ -235,7 +235,7 @@ if(!reduce){
       c.deg+= (t.deg- c.deg)*0.14;
       c.z  += (t.z  - c.z )*0.14;
       if(Math.abs(t.d-c.d)>0.1||Math.abs(t.deg-c.deg)>0.05||Math.abs(t.z-c.z)>0.5)moving=true;
-      secs[i].style.transform='perspective(1200px) translate3d('+c.d.toFixed(2)+'px,'+c.d.toFixed(2)+'px,'+c.z.toFixed(1)+'px) rotateX('+c.deg.toFixed(2)+'deg)';
+      secs[i].style.transform='perspective(1200px) translate3d('+c.d.toFixed(2)+'px,'+c.d.toFixed(2)+'px,'+c.z.toFixed(1)+'px) rotateY('+c.deg.toFixed(2)+'deg)';
     }
     if(moving){raf=requestAnimationFrame(frame);}else{active=false;}
   }
