@@ -201,26 +201,23 @@ if(!reduce){
   upd();
 })();
 
-/* Osiot kaartuvat 3D:ssä skrollatessa (kuin pyöreän pilarin ympärillä) – vain etusivu */
+/* Sivu liukuu skrollatessa vinosti oikeasta alakulmasta vasempaan yläkulmaan – vain etusivu */
 (function(){
   if(!document.querySelector('body.px'))return;
   var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
   if(!secs.length)return;
-  var MAX=24;     /* maksimikallistus asteina (sylinterin pinta) */
-  var DEPTH=240;  /* kuinka syvälle reunat vetäytyvät (px) */
+  var SHIFT=46;   /* kuinka paljon (px) osio liukuu vinosti keskikohdasta reunoille */
   var ticking=false;
   function upd(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
     var mid=vh/2;
     for(var i=0;i<secs.length;i++){
       var r=secs[i].getBoundingClientRect();
-      if(r.bottom<-260||r.top>vh+260){continue;}
-      var pos=((r.top+r.height/2)-mid)/mid;          /* -1 ylhäällä … +1 alhaalla */
-      if(pos>1.35)pos=1.35;else if(pos<-1.35)pos=-1.35;
-      var a=Math.min(Math.abs(pos),1);
-      var deg=(-pos*MAX).toFixed(2);                 /* ylä/ala kaartuvat taakse, keskellä suora */
-      var z=(-a*a*DEPTH).toFixed(0);                 /* reunat vetäytyvät sylinterin pinnalle */
-      secs[i].style.transform='perspective(1000px) translateZ('+z+'px) rotateX('+deg+'deg)';
+      if(r.bottom<-200||r.top>vh+200){continue;}
+      var pos=((r.top+r.height/2)-mid)/mid;          /* +1 alhaalla … -1 ylhäällä */
+      if(pos>1.3)pos=1.3;else if(pos<-1.3)pos=-1.3;
+      var d=(pos*SHIFT).toFixed(1);                  /* alhaalla oikea-ala (+), ylhäällä vasen-ylä (−) */
+      secs[i].style.transform='translate('+d+'px,'+d+'px)';
     }
     ticking=false;
   }

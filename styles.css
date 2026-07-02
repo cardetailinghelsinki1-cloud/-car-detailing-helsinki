@@ -28,8 +28,8 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:var(--body);color:var(--text);background:var(--paper);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
-/* 3D-rotaatio skrollatessa: osiot kaartuvat kuin pyöreän pilarin ympärille (vain etusivu) */
-.px section:not(.hero){will-change:transform;backface-visibility:hidden}
+/* Vino liuku skrollatessa (oikea-ala → vasen-ylä), vain etusivu */
+.px section:not(.hero){will-change:transform}
 html:has(body.px){overflow-x:clip}
 body.px{overflow-x:clip}
 h1,h2,h3{margin:0;font-family:var(--display);line-height:1.08;letter-spacing:-.02em;font-weight:700}
