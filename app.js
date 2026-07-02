@@ -206,7 +206,7 @@ if(!reduce){
   if(!document.querySelector('body.px'))return;
   var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
   if(!secs.length)return;
-  var SHIFT=46;   /* kuinka paljon (px) osio liukuu vinosti keskikohdasta reunoille */
+  var SHIFT=110;  /* kuinka paljon (px) osio liukuu vinosti keskikohdasta reunoille */
   var ticking=false;
   function upd(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
