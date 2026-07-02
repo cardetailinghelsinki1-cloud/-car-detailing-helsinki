@@ -31,7 +31,7 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBt
 
 document.querySelectorAll('.qa button').forEach(b=>{b.addEventListener('click',()=>{const qa=b.parentElement,a=qa.querySelector('.a'),open=qa.classList.contains('open');document.querySelectorAll('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('.a').style.maxHeight=null;});if(!open){qa.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}});});
 
-const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const reduce=false;
 
 if(!reduce){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));}
 else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));}
@@ -173,74 +173,4 @@ if(!reduce){
   });
   resize();
   setTimeout(resize,400);
-})();
-
-
-/* Kuvien kevyt parallax skrollatessa (vain etusivu) – panoroi kuvaa kehyksen sisällä */
-(function(){
-  var root=document.querySelector('body.px');if(!root)return;
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  var imgs=[].slice.call(document.querySelectorAll('.px .media img, .px .intro-media img'));
-  if(!imgs.length)return;
-  imgs.forEach(function(im){im.style.willChange='object-position';});
-  var ticking=false;
-  function upd(){
-    var vh=window.innerHeight||document.documentElement.clientHeight;
-    for(var i=0;i<imgs.length;i++){
-      var r=imgs[i].getBoundingClientRect();
-      if(r.bottom<-40||r.top>vh+40)continue;
-      var frac=(r.top+r.height/2)/vh;                 /* 0 = ylhäällä, 1 = alhaalla */
-      if(frac<0)frac=0;else if(frac>1)frac=1;
-      var pos=50+(0.5-frac)*38;                        /* ~31 % … 69 % */
-      imgs[i].style.objectPosition='50% '+pos.toFixed(1)+'%';
-    }
-    ticking=false;
-  }
-  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
-  window.addEventListener('resize',upd);
-  upd();
-})();
-
-/* Sivu on kietoutunut PYSTYSUUNTAISEN pyöreän pylvään ympärille (kuin parkkihallin tukipilari):
-   liukuu vinosti (oikea-ala → vasen-ylä) ja taittuu pehmeästi pylvään pintaan pystyakselin ympäri – vain etusivu */
-(function(){
-  if(!document.querySelector('body.px'))return;
-  var secs=[].slice.call(document.querySelectorAll('.px section:not(.hero)'));
-  if(!secs.length)return;
-  var SHIFT=90;   /* vino liuku (px) keskikohdasta reunoille */
-  var MAX=22;     /* taittokulma asteina (pylvään pinnan kaari, pystyakselin ympäri) */
-  var DEPTH=220;  /* kuinka syvälle reunat vetäytyvät pylvään pinnalle (px) */
-  var cur=[];     /* nykyiset (pehmennetyt) arvot per osio */
-  var tgt=[];     /* tavoitearvot skrollista */
-  for(var k=0;k<secs.length;k++){cur[k]={d:0,deg:0,z:0};tgt[k]={d:0,deg:0,z:0};}
-  var raf=0,active=false;
-  function measure(){
-    var vh=window.innerHeight||document.documentElement.clientHeight;
-    var mid=vh/2;
-    for(var i=0;i<secs.length;i++){
-      var r=secs[i].getBoundingClientRect();
-      if(r.bottom<-260||r.top>vh+260){tgt[i]=null;continue;}
-      var pos=((r.top+r.height/2)-mid)/mid;          /* +1 alhaalla … -1 ylhäällä */
-      if(pos>1.3)pos=1.3;else if(pos<-1.3)pos=-1.3;
-      var a=Math.min(Math.abs(pos),1);
-      tgt[i]={d:pos*SHIFT, deg:-pos*MAX, z:-a*a*DEPTH};
-    }
-  }
-  function frame(){
-    var moving=false;
-    for(var i=0;i<secs.length;i++){
-      var t=tgt[i]; if(!t){continue;}
-      var c=cur[i];
-      c.d  += (t.d  - c.d )*0.14;                     /* pehmeä seuraus (lerp) */
-      c.deg+= (t.deg- c.deg)*0.14;
-      c.z  += (t.z  - c.z )*0.14;
-      if(Math.abs(t.d-c.d)>0.1||Math.abs(t.deg-c.deg)>0.05||Math.abs(t.z-c.z)>0.5)moving=true;
-      secs[i].style.transform='perspective(1200px) translate3d('+c.d.toFixed(2)+'px,'+c.d.toFixed(2)+'px,'+c.z.toFixed(1)+'px) rotateY('+c.deg.toFixed(2)+'deg)';
-    }
-    if(moving){raf=requestAnimationFrame(frame);}else{active=false;}
-  }
-  function kick(){measure();if(!active){active=true;raf=requestAnimationFrame(frame);}}
-  window.addEventListener('scroll',kick,{passive:true});
-  window.addEventListener('resize',kick);
-  kick();
 })();
