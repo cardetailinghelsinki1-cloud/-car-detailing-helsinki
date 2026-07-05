@@ -290,14 +290,13 @@ if(!reduce){
 (function(){
   var wrap=document.querySelector('.page-hero .hero-logo');
   if(!wrap)return;
-  var ticking=false,top0=null;
+  var ticking=false;
   function upd(){
     var r=wrap.getBoundingClientRect();
-    if(top0===null)top0=r.top+window.scrollY;        /* logon dokumenttisijainti (vakio) */
-    var shy=top0-r.top;                              /* kuinka paljon logo on liukunut ylös = säihke alkaa yläosasta ja liikkuu alas skrollatessa */
-    if(shy<0)shy=0;
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    var shy=vh/2-r.top;                              /* säihkeen keskikohta ruudun keskikohdassa = sama kohta jossa viereinen otsikko on suurimmillaan */
     wrap.style.setProperty('--shy',shy.toFixed(1)+'px');
-    if(shy>2)wrap.classList.add('shimmer-on');       /* aktivoi säihke vasta kun aletaan skrollata (aluksi piilossa) */
+    if(window.scrollY>2)wrap.classList.add('shimmer-on');   /* aktivoi säihke vasta kun aletaan skrollata (aluksi piilossa) */
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
