@@ -346,7 +346,7 @@ footer a:hover{color:#7FB4FF}
   -webkit-mask-size:140% 52%;mask-size:140% 52%;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-position:50% -55%;mask-position:50% -55%;
-  animation:logoSweep 2.2s cubic-bezier(.45,.05,.3,1) .3s both}
+  animation:logoSweep 1.2s cubic-bezier(.45,.05,.3,1) .2s both}
 @keyframes logoSweep{
   0%{-webkit-mask-position:50% -55%;mask-position:50% -55%;opacity:0}
   20%{opacity:.95}
