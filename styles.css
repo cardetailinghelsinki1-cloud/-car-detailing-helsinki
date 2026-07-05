@@ -340,18 +340,18 @@ footer a:hover{color:#7FB4FF}
 /* kertaluontoinen säihke-pyyhkäisy ylhäältä alas sivulle saavuttaessa (ei riipu skrollauksesta).
    Pehmeä soikea hohde: kirkkain keskeltä, häipyy joka suuntaan -> ei laatikkomainen */
 .page-hero .hero-logo .hl-intro{position:absolute;inset:0;width:100%;height:100%;opacity:0;
-  filter:brightness(2) drop-shadow(0 0 6px #cfeaff) drop-shadow(0 0 16px rgba(150,210,255,.55));
-  -webkit-mask-image:radial-gradient(ellipse 80% 64% at 50% 50%,#000 0%,rgba(0,0,0,.5) 38%,rgba(0,0,0,.12) 64%,transparent 82%);
-          mask-image:radial-gradient(ellipse 80% 64% at 50% 50%,#000 0%,rgba(0,0,0,.5) 38%,rgba(0,0,0,.12) 64%,transparent 82%);
-  -webkit-mask-size:140% 52%;mask-size:140% 52%;
+  filter:brightness(2) blur(.6px) drop-shadow(0 0 7px #cfeaff) drop-shadow(0 0 18px rgba(150,210,255,.5));
+  -webkit-mask-image:radial-gradient(ellipse 90% 74% at 50% 50%,#000 0%,rgba(0,0,0,.78) 22%,rgba(0,0,0,.46) 42%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.06) 76%,transparent 90%);
+          mask-image:radial-gradient(ellipse 90% 74% at 50% 50%,#000 0%,rgba(0,0,0,.78) 22%,rgba(0,0,0,.46) 42%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.06) 76%,transparent 90%);
+  -webkit-mask-size:155% 62%;mask-size:155% 62%;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-  -webkit-mask-position:50% -55%;mask-position:50% -55%;
-  animation:logoSweep 1.2s cubic-bezier(.45,.05,.3,1) .2s both}
+  -webkit-mask-position:50% -60%;mask-position:50% -60%;
+  animation:logoSweep .85s cubic-bezier(.4,.05,.25,1) .15s both}
 @keyframes logoSweep{
-  0%{-webkit-mask-position:50% -55%;mask-position:50% -55%;opacity:0}
-  20%{opacity:.95}
-  80%{opacity:.95}
-  100%{-webkit-mask-position:50% 155%;mask-position:50% 155%;opacity:0}
+  0%{-webkit-mask-position:50% -60%;mask-position:50% -60%;opacity:0}
+  22%{opacity:.95}
+  78%{opacity:.95}
+  100%{-webkit-mask-position:50% 160%;mask-position:50% 160%;opacity:0}
 }
 @media (max-width:820px){.page-hero .hero-logo{display:none}}
 .page-hero .inner{position:relative;z-index:2;padding:clamp(60px,10vw,120px) 0 clamp(48px,7vw,84px)}
