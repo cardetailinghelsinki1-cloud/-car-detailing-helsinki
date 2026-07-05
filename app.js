@@ -285,3 +285,20 @@ if(!reduce){
   window.addEventListener('load',function(){rebuildAll();upd();});  /* fonttien latauduttua rivijako voi muuttua */
   upd();
 })();
+
+/* Logon säihkyvä kaista seuraa ruudun keskikohtaa skrollatessa (vain palvelut-sivun hero) */
+(function(){
+  var wrap=document.querySelector('.page-hero .hero-logo');
+  if(!wrap)return;
+  var ticking=false;
+  function upd(){
+    var r=wrap.getBoundingClientRect();
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    wrap.style.setProperty('--shy',(vh/2 - r.top).toFixed(1)+'px');   /* ruudun keskikohta suhteessa logon yläreunaan */
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
+  window.addEventListener('resize',upd);
+  window.addEventListener('load',upd);
+  upd();
+})();
