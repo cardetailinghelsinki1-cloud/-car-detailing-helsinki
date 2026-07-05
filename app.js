@@ -290,13 +290,26 @@ if(!reduce){
 (function(){
   var wrap=document.querySelector('.page-hero .hero-logo');
   if(!wrap)return;
-  var ticking=false;
+  var ticking=false,headDoc=null;
   function upd(){
     var r=wrap.getBoundingClientRect();
     var vh=window.innerHeight||document.documentElement.clientHeight;
-    var shy=vh/2-r.top;                              /* säihkeen keskikohta ruudun keskikohdassa = sama kohta jossa viereinen otsikko on suurimmillaan */
+    if(headDoc===null){                             /* viereisen otsikon keskikohdan dokumenttisijainti (vakio) */
+      var sl=document.querySelector('.page-hero h1.hscale .sl')||document.querySelector('.page-hero h1');
+      if(sl){var rr=sl.getBoundingClientRect();headDoc=rr.top+rr.height/2+window.scrollY;}
+    }
+    var sc=window.scrollY;
+    var C=vh/2-r.top;                               /* normaali keskikohta-seuranta (vanha nopeus) */
+    var P=Math.max((headDoc!=null?headDoc:vh/2)-vh/2,130);  /* skrollikohta jossa otsikko suurimmillaan (väh. 130 -> yläosa ehtii säihkyä) */
+    var shy;
+    if(sc<P){                                       /* vaihe 1: säihke lähtee logon yläreunasta ja kiihtyy keskikohtaan */
+      shy=((C-sc)+P)*(sc/P);
+    }else{                                          /* vaihe 2: sama vanha keskikohta-seuranta */
+      shy=C;
+    }
+    if(shy<0)shy=0;
     wrap.style.setProperty('--shy',shy.toFixed(1)+'px');
-    if(window.scrollY>2)wrap.classList.add('shimmer-on');   /* aktivoi säihke vasta kun aletaan skrollata (aluksi piilossa) */
+    if(sc>2)wrap.classList.add('shimmer-on');       /* aktivoi säihke vasta kun aletaan skrollata (aluksi piilossa) */
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
