@@ -328,6 +328,10 @@ footer a:hover{color:#7FB4FF}
 .page-hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
 .page-hero .bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.4}
 .page-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(11,26,43,.92),rgba(11,26,43,.6) 60%,rgba(10,108,224,.4))}
+/* Hohtava logon ääriviiva heron oikealla puoliskolla (vain palvelut-sivu) */
+.page-hero .hero-logo{position:absolute;z-index:1;top:50%;right:clamp(-30px,1vw,24px);transform:translateY(-50%);width:min(46%,540px);pointer-events:none;opacity:.9}
+.page-hero .hero-logo svg{width:100%;height:auto;display:block}
+@media (max-width:820px){.page-hero .hero-logo{display:none}}
 .page-hero .inner{position:relative;z-index:2;padding:clamp(60px,10vw,120px) 0 clamp(48px,7vw,84px)}
 .page-hero .crumb{font-family:var(--display);font-size:13px;color:#9DB0C2;letter-spacing:.04em}
 .page-hero .crumb a:hover{color:#7FB4FF}
