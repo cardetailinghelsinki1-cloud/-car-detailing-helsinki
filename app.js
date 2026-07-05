@@ -297,6 +297,7 @@ if(!reduce){
     var shy=top0-r.top;                              /* kuinka paljon logo on liukunut ylös = säihke alkaa yläosasta ja liikkuu alas skrollatessa */
     if(shy<0)shy=0;
     wrap.style.setProperty('--shy',shy.toFixed(1)+'px');
+    if(shy>2)wrap.classList.add('shimmer-on');       /* aktivoi säihke vasta kun aletaan skrollata (aluksi piilossa) */
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
