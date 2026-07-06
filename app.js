@@ -16,11 +16,16 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBt
     while((track.scrollWidth < window.innerWidth*2 || n%2!==0) && n<24){track.innerHTML+=unit;n++;}
     track.style.animationDuration=Math.max(18,(track.scrollWidth/2)/90)+'s';
   }
-  var dl=new Date(bar.getAttribute('data-deadline')).getTime();
+  var WEEK=7*86400000;
+  var anchor=Date.parse(bar.getAttribute('data-deadline'))||Date.parse('2026-07-06T00:00:00');
+  function nextDl(){var k=Math.ceil((Date.now()-anchor)/WEEK);if(k<1)k=1;return anchor+k*WEEK;}  /* rullaava 7 pv: aina tuleva määräaika, uusiutuu automaattisesti */
+  var dl=nextDl();
   function p(n){return(n<10?'0':'')+n;}
   function set(cls,val){var e=bar.querySelectorAll(cls);for(var i=0;i<e.length;i++)e[i].textContent=val;}
   function tick(){
-    var diff=dl-Date.now();if(diff<0)diff=0;
+    var now=Date.now();
+    if(now>=dl)dl=nextDl();                       /* ajastin loppui -> alkaa uudet 7 päivää */
+    var diff=dl-now;if(diff<0)diff=0;
     set('.cd-d',p(Math.floor(diff/86400000)));
     set('.cd-h',p(Math.floor(diff%86400000/3600000)));
     set('.cd-m',p(Math.floor(diff%3600000/60000)));
