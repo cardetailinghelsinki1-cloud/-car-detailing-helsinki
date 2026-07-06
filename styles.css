@@ -353,7 +353,7 @@ footer a:hover{color:#7FB4FF}
   84%{opacity:.95}
   100%{--gy:125%;opacity:0}
 }
-@media (max-width:820px){.page-hero .hero-logo{display:none}}
+/* Logo näkyy myös puhelimella samanlaisena säihkeanimaatioineen */
 .page-hero .inner{position:relative;z-index:2;padding:clamp(60px,10vw,120px) 0 clamp(48px,7vw,84px)}
 .page-hero .crumb{font-family:var(--display);font-size:13px;color:#9DB0C2;letter-spacing:.04em}
 .page-hero .crumb a:hover{color:#7FB4FF}
