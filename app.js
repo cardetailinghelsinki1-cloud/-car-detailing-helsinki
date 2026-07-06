@@ -295,30 +295,33 @@ if(!reduce){
 (function(){
   var wrap=document.querySelector('.page-hero .hero-logo');
   if(!wrap)return;
-  var ticking=false,headDoc=null;
+  var ticking=false,headDoc=null,logoTopDoc=null;
   function upd(){
     var r=wrap.getBoundingClientRect();
     var vh=window.innerHeight||document.documentElement.clientHeight;
+    if(logoTopDoc===null){logoTopDoc=r.top+window.scrollY;}   /* logon yläreunan dokumenttisijainti (vakio) */
     if(headDoc===null){                             /* viereisen otsikon keskikohdan dokumenttisijainti (vakio) */
       var sl=document.querySelector('.page-hero h1.hscale .sl')||document.querySelector('.page-hero h1');
       if(sl){var rr=sl.getBoundingClientRect();headDoc=rr.top+rr.height/2+window.scrollY;}
     }
-    var sc=window.scrollY;
-    var C=vh/2-r.top;                               /* normaali keskikohta-seuranta (vanha nopeus) */
+    var scReal=window.scrollY;
+    var SP=(window.innerWidth<=820)?0.5:1;          /* puhelimella säihke liikkuu hitaammin skrollatessa (työpöydällä ennallaan) */
+    var sc=scReal*SP;                               /* efektiivinen (hidastettu) skrolli */
+    var C=vh/2-(logoTopDoc-sc);                     /* keskikohta-seuranta hidastetulla skrollilla; SP=1 -> C=vh/2-r.top kuten ennen */
     var P=Math.max((headDoc!=null?headDoc:vh/2)-vh/2,130);  /* skrollikohta jossa otsikko suurimmillaan (väh. 130 -> yläosa ehtii säihkyä) */
     var shy;
     if(sc<P){                                       /* vaihe 1: säihke lähtee logon yläreunasta ja kiihtyy keskikohtaan */
       shy=((C-sc)+P)*(sc/P);
-    }else{                                          /* vaihe 2: sama vanha keskikohta-seuranta */
+    }else{                                          /* vaihe 2: sama keskikohta-seuranta */
       shy=C;
     }
     if(shy<0)shy=0;
     wrap.style.setProperty('--shy',shy.toFixed(1)+'px');
-    if(sc>2)wrap.classList.add('shimmer-on');       /* aktivoi säihke vasta kun aletaan skrollata (aluksi piilossa) */
+    if(scReal>2)wrap.classList.add('shimmer-on');   /* aktivoi säihke vasta kun aletaan skrollata (aluksi piilossa) */
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(upd);}},{passive:true});
-  window.addEventListener('resize',upd);
-  window.addEventListener('load',upd);
+  window.addEventListener('resize',function(){headDoc=null;logoTopDoc=null;upd();});
+  window.addEventListener('load',function(){headDoc=null;logoTopDoc=null;upd();});
   upd();
 })();
