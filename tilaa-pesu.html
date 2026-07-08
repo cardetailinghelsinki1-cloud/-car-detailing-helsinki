@@ -226,13 +226,44 @@
 <script>
 document.getElementById('orderForm').addEventListener('submit',function(e){
   e.preventDefault();
-  var g=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
+  var form=e.target;
+  var btn=form.querySelector('button[type="submit"]');
+  var g=function(id){return document.getElementById(id).value||'';};
   var yhtEl=document.querySelector('input[name="yhteystapa"]:checked');
-  var yht=encodeURIComponent(yhtEl?yhtEl.value:'');
+  var yht=yhtEl?yhtEl.value:'';
   var palvelut=[].slice.call(document.querySelectorAll('input[name="palvelu"]:checked')).map(function(c){return c.value;}).join(', ');
-  var body="Nimi: "+g('nimi')+"%0D%0APuhelin: "+g('puh')+"%0D%0ASähköposti: "+g('email')+"%0D%0AAuto: "+g('auto')+"%0D%0APalvelu: "+encodeURIComponent(palvelut)+"%0D%0AOsoite: "+g('osoite')+"%0D%0AYhteydenottotapa: "+yht+"%0D%0ALisätiedot: "+g('viesti');
-  window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("Tilaus / tarjouspyyntö")+"&body="+body;
-  setTimeout(function(){window.location.href="kiitos.html";},800);
+
+  function fallbackMailto(){
+    var g2=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
+    var body="Nimi: "+g2('nimi')+"%0D%0APuhelin: "+g2('puh')+"%0D%0ASähköposti: "+g2('email')+"%0D%0AAuto: "+g2('auto')+"%0D%0APalvelu: "+encodeURIComponent(palvelut)+"%0D%0AOsoite: "+g2('osoite')+"%0D%0AYhteydenottotapa: "+encodeURIComponent(yht)+"%0D%0ALisätiedot: "+g2('viesti');
+    window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("Tilaus / tarjouspyyntö")+"&body="+body;
+    setTimeout(function(){window.location.href="kiitos.html";},800);
+  }
+
+  if(btn){btn.disabled=true;}
+
+  fetch('https://api.web3forms.com/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json',Accept:'application/json'},
+    body:JSON.stringify({
+      access_key:"WEB3FORMS_ACCESS_KEY",
+      subject:"Tilaus / tarjouspyyntö - Car Detailing Helsinki",
+      from_name:g('nimi')||"Car Detailing Helsinki - verkkosivu",
+      Nimi:g('nimi'),
+      Puhelin:g('puh'),
+      Sahkoposti:g('email'),
+      Auto:g('auto'),
+      Palvelu:palvelut,
+      Osoite:g('osoite'),
+      Yhteydenottotapa:yht,
+      Lisatiedot:g('viesti')
+    })
+  }).then(function(r){return r.json();}).then(function(res){
+    if(!res.success)throw new Error('web3forms failed');
+    window.location.href="kiitos.html";
+  }).catch(function(){
+    fallbackMailto();
+  });
 });
 </script>
 <section id="yhteys" class="band-dark contact">
