@@ -186,12 +186,12 @@
       <div class="field"><label for="email">Sähköposti</label><input id="email" type="email"></div>
       <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025"></div>
       <div class="field">
-        <label>Kiinnostaa</label>
+        <label>Minua kiinnostaa</label>
         <div class="radio-group">
           <label class="radio"><input type="radio" name="palvelu" value="Kiiltopaketti (4 viikon välein)" checked><span>Kiiltopaketti (4 viikon välein)</span></label>
           <label class="radio"><input type="radio" name="palvelu" value="Ylläpitopaketti (6 viikon välein)"><span>Ylläpitopaketti (6 viikon välein)</span></label>
           <label class="radio"><input type="radio" name="palvelu" value="Huoltopaketti (8 viikon välein)"><span>Huoltopaketti (8 viikon välein)</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="En ole varma, autakaa valitsemaan"><span>En ole varma, autakaa valitsemaan</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="En ole varma, otan suosituksen vastaan"><span>En ole varma, otan suosituksen vastaan</span></label>
         </div>
       </div>
       <div class="field"><label for="osoite">Osoite (missä auto pestään)</label><input id="osoite" type="text"></div>
@@ -238,7 +238,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   function fallbackMailto(){
     var g2=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
     var body="Nimi: "+g2('nimi')+"%0D%0APuhelin: "+g2('puh')+"%0D%0ASähköposti: "+g2('email')+"%0D%0AAuto: "+g2('auto')+"%0D%0APaketti: "+encodeURIComponent(palvelut)+"%0D%0AOsoite: "+g2('osoite')+"%0D%0AYhteydenottotapa: "+encodeURIComponent(yht)+"%0D%0ALisätiedot: "+g2('viesti');
-    window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("Liity ohjelmaan - Kanta-asiakasohjelma")+"&body="+body;
+    window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("[Liity ohjelmaan] Uusi tarjouspyyntö")+"&body="+body;
     setTimeout(function(){window.location.href="kiitos.html";},800);
   }
 
@@ -249,7 +249,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
     headers:{'Content-Type':'application/json',Accept:'application/json'},
     body:JSON.stringify({
       access_key:"f5ae019f-b6a1-40da-946d-3f2549633401",
-      subject:"Liity ohjelmaan - Kanta-asiakasohjelma - Car Detailing Helsinki",
+      subject:"[Liity ohjelmaan] Uusi tarjouspyyntö - Car Detailing Helsinki",
       from_name:g('nimi')||"Car Detailing Helsinki - verkkosivu",
       Nimi:g('nimi'),
       Puhelin:g('puh'),

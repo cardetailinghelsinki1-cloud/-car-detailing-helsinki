@@ -236,7 +236,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   function fallbackMailto(){
     var g2=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
     var body="Nimi: "+g2('nimi')+"%0D%0APuhelin: "+g2('puh')+"%0D%0ASähköposti: "+g2('email')+"%0D%0AAuto: "+g2('auto')+"%0D%0APalvelu: "+encodeURIComponent(palvelut)+"%0D%0AOsoite: "+g2('osoite')+"%0D%0AYhteydenottotapa: "+encodeURIComponent(yht)+"%0D%0ALisätiedot: "+g2('viesti');
-    window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("Tilaus / tarjouspyyntö")+"&body="+body;
+    window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("[Tilaa pesu] Uusi tarjouspyyntö")+"&body="+body;
     setTimeout(function(){window.location.href="kiitos.html";},800);
   }
 
@@ -247,7 +247,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
     headers:{'Content-Type':'application/json',Accept:'application/json'},
     body:JSON.stringify({
       access_key:"f5ae019f-b6a1-40da-946d-3f2549633401",
-      subject:"Tilaus / tarjouspyyntö - Car Detailing Helsinki",
+      subject:"[Tilaa pesu] Uusi tarjouspyyntö - Car Detailing Helsinki",
       from_name:g('nimi')||"Car Detailing Helsinki - verkkosivu",
       Nimi:g('nimi'),
       Puhelin:g('puh'),
