@@ -187,10 +187,11 @@
       <div class="field">
         <label>Palvelu (löytyvät lomakkeen yläpuolelta)</label>
         <div class="radio-group">
-          <label class="radio"><input type="checkbox" name="palvelu" value="Standard Interior Detail"><span>Standard Interior Detail</span></label>
-          <label class="radio"><input type="checkbox" name="palvelu" value="Premium Interior Detail"><span>Premium Interior Detail</span></label>
-          <label class="radio"><input type="checkbox" name="palvelu" value="Deluxe Interior Detail"><span>Deluxe Interior Detail</span></label>
-          <label class="radio"><input type="checkbox" name="palvelu" value="Premium Exterior Detail"><span>Premium Exterior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Standard Interior Detail" checked><span>Standard Interior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Premium Interior Detail"><span>Premium Interior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Deluxe Interior Detail"><span>Deluxe Interior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Premium Exterior Detail"><span>Premium Exterior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="En ole varma / Kaipaan suosittelua"><span>En ole varma / Kaipaan suosittelua</span></label>
         </div>
       </div>
       <div class="field"><label for="postinumero">Postinumero</label><input id="postinumero" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5"></div>
@@ -231,7 +232,8 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   var g=function(id){return document.getElementById(id).value||'';};
   var yhtEl=document.querySelector('input[name="yhteystapa"]:checked');
   var yht=yhtEl?yhtEl.value:'';
-  var palvelut=[].slice.call(document.querySelectorAll('input[name="palvelu"]:checked')).map(function(c){return c.value;}).join(', ');
+  var palveluEl=document.querySelector('input[name="palvelu"]:checked');
+  var palvelut=palveluEl?palveluEl.value:'';
 
   function fallbackMailto(){
     var g2=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
