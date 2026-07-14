@@ -194,7 +194,10 @@
           <label class="radio"><input type="radio" name="palvelu" value="En ole varma, otan suosituksen vastaan"><span>En ole varma, otan suosituksen vastaan</span></label>
         </div>
       </div>
-      <div class="field"><label for="osoite">Osoite (missä auto pestään)</label><input id="osoite" type="text"></div>
+      <div class="row2">
+        <div class="field"><label for="osoite">Osoite (missä auto pestään)</label><input id="osoite" type="text"></div>
+        <div class="field"><label for="postinumero">Postinumero</label><input id="postinumero" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5"></div>
+      </div>
       <div class="field">
         <label>Haluan, että minuun otetaan yhteyttä</label>
         <div class="radio-group">
@@ -237,7 +240,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
 
   function fallbackMailto(){
     var g2=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
-    var body="Nimi: "+g2('nimi')+"%0D%0APuhelin: "+g2('puh')+"%0D%0ASähköposti: "+g2('email')+"%0D%0AAuto: "+g2('auto')+"%0D%0APaketti: "+encodeURIComponent(palvelut)+"%0D%0AOsoite: "+g2('osoite')+"%0D%0AYhteydenottotapa: "+encodeURIComponent(yht)+"%0D%0ALisätiedot: "+g2('viesti');
+    var body="Nimi: "+g2('nimi')+"%0D%0APuhelin: "+g2('puh')+"%0D%0ASähköposti: "+g2('email')+"%0D%0AAuto: "+g2('auto')+"%0D%0APaketti: "+encodeURIComponent(palvelut)+"%0D%0AOsoite: "+g2('osoite')+"%0D%0APostinumero: "+g2('postinumero')+"%0D%0AYhteydenottotapa: "+encodeURIComponent(yht)+"%0D%0ALisätiedot: "+g2('viesti');
     window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("[Liity ohjelmaan] Uusi tarjouspyyntö")+"&body="+body;
     setTimeout(function(){window.location.href="kiitos.html";},800);
   }
@@ -257,6 +260,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
       Auto:g('auto'),
       Paketti:palvelut,
       Osoite:g('osoite'),
+      Postinumero:g('postinumero'),
       Yhteydenottotapa:yht,
       Lisatiedot:g('viesti')
     })
