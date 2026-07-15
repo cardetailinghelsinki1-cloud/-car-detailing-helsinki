@@ -183,27 +183,27 @@
         <div class="field"><label for="nimi">Nimi</label><input id="nimi" type="text" required></div>
         <div class="field"><label for="puh">Puhelin</label><input id="puh" type="tel" required></div>
       </div>
-      <div class="field"><label for="email">Sähköposti</label><input id="email" type="email"></div>
-      <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025"></div>
+      <div class="field"><label for="email">Sähköposti</label><input id="email" type="email" required></div>
+      <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025" required></div>
       <div class="field">
         <label>Minua kiinnostaa</label>
         <div class="radio-group">
-          <label class="radio"><input type="radio" name="palvelu" value="Kiiltopaketti (4 viikon välein)" checked><span>Kiiltopaketti (4 viikon välein)</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="Ylläpitopaketti (6 viikon välein)"><span>Ylläpitopaketti (6 viikon välein)</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="Huoltopaketti (8 viikon välein)"><span>Huoltopaketti (8 viikon välein)</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="En ole varma, otan suosituksen vastaan"><span>En ole varma, otan suosituksen vastaan</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Kiiltopaketti (4 viikon välein)" checked required><span>Kiiltopaketti (4 viikon välein)</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Ylläpitopaketti (6 viikon välein)" required><span>Ylläpitopaketti (6 viikon välein)</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Huoltopaketti (8 viikon välein)" required><span>Huoltopaketti (8 viikon välein)</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="En ole varma, otan suosituksen vastaan" required><span>En ole varma, otan suosituksen vastaan</span></label>
         </div>
       </div>
-      <div class="field"><label for="postinumero">Postinumero</label><input id="postinumero" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5"></div>
+      <div class="field"><label for="postinumero">Postinumero</label><input id="postinumero" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required></div>
       <div class="field">
         <label>Haluan, että minuun otetaan yhteyttä</label>
         <div class="radio-group">
-          <label class="radio"><input type="radio" name="yhteystapa" value="Puhelimitse seuraavan 24h sisällä" checked><span>Puhelimitse seuraavan 24h sisällä</span></label>
-          <label class="radio"><input type="radio" name="yhteystapa" value="Tekstiviestitse seuraavan 24h sisällä"><span>Tekstiviestitse seuraavan 24h sisällä</span></label>
-          <label class="radio"><input type="radio" name="yhteystapa" value="Kummalla tahansa tavalla seuraavan 24h sisällä"><span>Kummalla tahansa tavalla seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Puhelimitse seuraavan 24h sisällä" checked required><span>Puhelimitse seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Tekstiviestitse seuraavan 24h sisällä" required><span>Tekstiviestitse seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Kummalla tahansa tavalla seuraavan 24h sisällä" required><span>Kummalla tahansa tavalla seuraavan 24h sisällä</span></label>
         </div>
       </div>
-      <div class="field"><label for="viesti">Lisätiedot</label><textarea id="viesti"></textarea></div>
+      <div class="field"><label for="viesti">Lisätiedot</label><textarea id="viesti" required></textarea></div>
       <button class="btn btn-primary" type="submit" style="justify-content:center">Lähetä pyyntö →</button>
     </form>
   </div>

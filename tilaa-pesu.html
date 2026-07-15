@@ -182,37 +182,37 @@
         <div class="field"><label for="nimi">Nimi</label><input id="nimi" type="text" required></div>
         <div class="field"><label for="puh">Puhelin</label><input id="puh" type="tel" required></div>
       </div>
-      <div class="field"><label for="email">Sähköposti</label><input id="email" type="email"></div>
-      <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025"></div>
+      <div class="field"><label for="email">Sähköposti</label><input id="email" type="email" required></div>
+      <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025" required></div>
       <div class="field">
         <label>Auton penkit ovat</label>
         <div class="radio-group">
-          <label class="radio"><input type="radio" name="penkit" value="Nahkapenkit"><span>Nahkapenkit</span></label>
-          <label class="radio"><input type="radio" name="penkit" value="Tekstiilipenkit"><span>Tekstiilipenkit</span></label>
-          <label class="radio"><input type="radio" name="penkit" value="Muu" id="penkitMuuRadio"><span>Muu, mikä?</span></label>
+          <label class="radio"><input type="radio" name="penkit" value="Nahkapenkit" required><span>Nahkapenkit</span></label>
+          <label class="radio"><input type="radio" name="penkit" value="Tekstiilipenkit" required><span>Tekstiilipenkit</span></label>
+          <label class="radio"><input type="radio" name="penkit" value="Muu" id="penkitMuuRadio" required><span>Muu, mikä?</span></label>
           <input type="text" id="penkitMuu" placeholder="Kerro tarkemmin">
         </div>
       </div>
       <div class="field">
         <label>Palvelu (löytyvät lomakkeen yläpuolelta)</label>
         <div class="radio-group">
-          <label class="radio"><input type="radio" name="palvelu" value="Standard Interior Detail" checked><span>Standard Interior Detail</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="Premium Interior Detail"><span>Premium Interior Detail</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="Deluxe Interior Detail"><span>Deluxe Interior Detail</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="Premium Exterior Detail"><span>Premium Exterior Detail</span></label>
-          <label class="radio"><input type="radio" name="palvelu" value="En ole varma / Kaipaan suosittelua"><span>En ole varma / Kaipaan suosittelua</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Standard Interior Detail" checked required><span>Standard Interior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Premium Interior Detail" required><span>Premium Interior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Deluxe Interior Detail" required><span>Deluxe Interior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="Premium Exterior Detail" required><span>Premium Exterior Detail</span></label>
+          <label class="radio"><input type="radio" name="palvelu" value="En ole varma / Kaipaan suosittelua" required><span>En ole varma / Kaipaan suosittelua</span></label>
         </div>
       </div>
-      <div class="field"><label for="postinumero">Postinumero</label><input id="postinumero" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5"></div>
+      <div class="field"><label for="postinumero">Postinumero</label><input id="postinumero" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required></div>
       <div class="field">
         <label>Haluan, että minuun otetaan yhteyttä</label>
         <div class="radio-group">
-          <label class="radio"><input type="radio" name="yhteystapa" value="Puhelimitse seuraavan 24h sisällä" checked><span>Puhelimitse seuraavan 24h sisällä</span></label>
-          <label class="radio"><input type="radio" name="yhteystapa" value="Tekstiviestitse seuraavan 24h sisällä"><span>Tekstiviestitse seuraavan 24h sisällä</span></label>
-          <label class="radio"><input type="radio" name="yhteystapa" value="Kummalla tahansa tavalla seuraavan 24h sisällä"><span>Kummalla tahansa tavalla seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Puhelimitse seuraavan 24h sisällä" checked required><span>Puhelimitse seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Tekstiviestitse seuraavan 24h sisällä" required><span>Tekstiviestitse seuraavan 24h sisällä</span></label>
+          <label class="radio"><input type="radio" name="yhteystapa" value="Kummalla tahansa tavalla seuraavan 24h sisällä" required><span>Kummalla tahansa tavalla seuraavan 24h sisällä</span></label>
         </div>
       </div>
-      <div class="field"><label for="viesti">Lisätiedot</label><textarea id="viesti"></textarea></div>
+      <div class="field"><label for="viesti">Lisätiedot</label><textarea id="viesti" required></textarea></div>
       <button class="btn btn-primary" type="submit" style="justify-content:center">Lähetä pyyntö →</button>
     </form>
   </div>
@@ -234,6 +234,11 @@
   </div>
 </div></div></div></section>
 <script>
+document.querySelectorAll('input[name="penkit"]').forEach(function(r){
+  r.addEventListener('change',function(){
+    document.getElementById('penkitMuu').required=(document.getElementById('penkitMuuRadio').checked);
+  });
+});
 document.getElementById('orderForm').addEventListener('submit',function(e){
   e.preventDefault();
   var form=e.target;
