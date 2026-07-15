@@ -185,6 +185,15 @@
       <div class="field"><label for="email">Sähköposti</label><input id="email" type="email"></div>
       <div class="field"><label for="auto">Auton merkki ja malli</label><input id="auto" type="text" placeholder="Esim. Volvo XC60 2025"></div>
       <div class="field">
+        <label>Auton penkit ovat</label>
+        <div class="radio-group">
+          <label class="radio"><input type="radio" name="penkit" value="Nahkapenkit"><span>Nahkapenkit</span></label>
+          <label class="radio"><input type="radio" name="penkit" value="Tekstiilipenkit"><span>Tekstiilipenkit</span></label>
+          <label class="radio"><input type="radio" name="penkit" value="Muu" id="penkitMuuRadio"><span>Muu, mikä?</span></label>
+          <input type="text" id="penkitMuu" placeholder="Kerro tarkemmin">
+        </div>
+      </div>
+      <div class="field">
         <label>Palvelu (löytyvät lomakkeen yläpuolelta)</label>
         <div class="radio-group">
           <label class="radio"><input type="radio" name="palvelu" value="Standard Interior Detail" checked><span>Standard Interior Detail</span></label>
@@ -234,10 +243,12 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   var yht=yhtEl?yhtEl.value:'';
   var palveluEl=document.querySelector('input[name="palvelu"]:checked');
   var palvelut=palveluEl?palveluEl.value:'';
+  var penkitEl=document.querySelector('input[name="penkit"]:checked');
+  var penkit=penkitEl?(penkitEl.value==='Muu'?(g('penkitMuu')||'Muu'):penkitEl.value):'';
 
   function fallbackMailto(){
     var g2=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
-    var body="Nimi: "+g2('nimi')+"%0D%0APuhelin: "+g2('puh')+"%0D%0ASähköposti: "+g2('email')+"%0D%0AAuto: "+g2('auto')+"%0D%0APalvelu: "+encodeURIComponent(palvelut)+"%0D%0APostinumero: "+g2('postinumero')+"%0D%0AYhteydenottotapa: "+encodeURIComponent(yht)+"%0D%0ALisätiedot: "+g2('viesti');
+    var body="Nimi: "+g2('nimi')+"%0D%0APuhelin: "+g2('puh')+"%0D%0ASähköposti: "+g2('email')+"%0D%0AAuto: "+g2('auto')+"%0D%0AAuton penkit: "+encodeURIComponent(penkit)+"%0D%0APalvelu: "+encodeURIComponent(palvelut)+"%0D%0APostinumero: "+g2('postinumero')+"%0D%0AYhteydenottotapa: "+encodeURIComponent(yht)+"%0D%0ALisätiedot: "+g2('viesti');
     window.location.href="mailto:cardetailing.helsinki1@gmail.com?subject="+encodeURIComponent("[Tilaa pesu] Uusi tarjouspyyntö")+"&body="+body;
     setTimeout(function(){window.location.href="kiitos.html";},800);
   }
@@ -255,6 +266,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
       Puhelin:g('puh'),
       Sahkoposti:g('email'),
       Auto:g('auto'),
+      AutonPenkit:penkit,
       Palvelu:palvelut,
       Postinumero:g('postinumero'),
       Yhteydenottotapa:yht,
