@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viikkoseuranta — 10 000€ tavoite</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A6CE0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<style>
+  :root{
+    --paper:#FFFFFF;
+    --ink:#0B1A2B;
+    --muted:#5A6B7B;
+    --line:#E6EBF1;
+    --accent:#0A6CE0;
+    --accent-deep:#0852AB;
+    --accent-soft:#EAF2FE;
+    --head:#0A3D62;
+    --good:#12875A;
+    --good-soft:#E7F7EF;
+    --bad:#C23B3B;
+    --bad-soft:#FCEAEA;
+    --bg:#F4F7FB;
+    --radius:14px;
+    --display:"Poppins",system-ui,sans-serif;
+    --body:"Open Sans",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:60px;
+  }
+  header.top{
+    background:linear-gradient(135deg,var(--head),var(--accent-deep));
+    color:#fff;
+    padding:22px 18px 26px;
+  }
+  header.top h1{
+    font-family:var(--display);
+    font-size:clamp(20px,5vw,26px);
+    margin:0 0 4px;
+    font-weight:700;
+  }
+  header.top p{
+    margin:0;
+    font-size:14px;
+    color:#CFE1F7;
+  }
+  main{
+    max-width:720px;
+    margin:0 auto;
+    padding:16px;
+  }
+  .card{
+    background:var(--paper);
+    border-radius:var(--radius);
+    padding:16px;
+    margin-bottom:14px;
+    box-shadow:0 1px 3px rgba(11,26,43,.06), 0 1px 2px rgba(11,26,43,.04);
+    border:1px solid var(--line);
+  }
+  .card h2{
+    font-family:var(--display);
+    font-size:15px;
+    margin:0 0 12px;
+    color:var(--head);
+    font-weight:700;
+  }
+  .progress-wrap{margin-top:6px;}
+  .progress-track{
+    background:var(--line);
+    border-radius:999px;
+    height:14px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    background:linear-gradient(90deg,var(--accent),var(--accent-deep));
+    height:100%;
+    border-radius:999px;
+    transition:width .4s ease;
+  }
+  .progress-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+  .progress-label b{color:var(--ink);}
+  .stats-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .stat{
+    background:var(--accent-soft);
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .stat .label{
+    font-size:11.5px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    margin-bottom:4px;
+  }
+  .stat .value{
+    font-family:var(--display);
+    font-size:19px;
+    font-weight:700;
+    color:var(--head);
+    line-height:1.2;
+  }
+  .stat .sub{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .stat.good{background:var(--good-soft);}
+  .stat.good .value{color:var(--good);}
+  .stat.bad{background:var(--bad-soft);}
+  .stat.bad .value{color:var(--bad);}
+  .need-box{
+    display:flex;
+    gap:10px;
+    margin-top:4px;
+  }
+  .need-box .need{
+    flex:1;
+    text-align:center;
+    background:var(--accent-soft);
+    border-radius:10px;
+    padding:14px 8px;
+  }
+  .need-box .need .n{
+    font-family:var(--display);
+    font-size:26px;
+    font-weight:800;
+    color:var(--accent-deep);
+  }
+  .need-box .need .t{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  canvas#chart{
+    width:100%;
+    height:220px;
+    display:block;
+  }
+  .legend{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    font-size:12.5px;
+    color:var(--muted);
+    margin-top:8px;
+  }
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .dot.actual{background:var(--accent);}
+  .dot.target{background:var(--muted);}
+  form.entry-form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  form.entry-form .full{grid-column:1/-1;}
+  label{
+    font-size:12.5px;
+    color:var(--muted);
+    display:block;
+    margin-bottom:4px;
+    font-weight:600;
+  }
+  input[type=date],input[type=number]{
+    width:100%;
+    padding:11px 10px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    font-size:16px;
+    font-family:var(--body);
+    background:#fff;
+    color:var(--ink);
+  }
+  input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  button{
+    font-family:var(--display);
+    font-weight:700;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    padding:13px 16px;
+    font-size:15px;
+    width:100%;
+    margin-top:2px;
+  }
+  .btn-primary:active{background:var(--accent-deep);}
+  .btn-secondary{
+    background:var(--accent-soft);
+    color:var(--accent-deep);
+    padding:10px 14px;
+    font-size:13.5px;
+  }
+  .btn-danger-text{
+    background:none;
+    color:var(--bad);
+    font-size:12.5px;
+    padding:4px 8px;
+    font-weight:600;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+  }
+  th,td{
+    text-align:right;
+    padding:8px 4px;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  th:first-child,td:first-child{text-align:left;}
+  th{
+    color:var(--muted);
+    font-weight:600;
+    font-size:11.5px;
+    text-transform:uppercase;
+  }
+  .empty-note{
+    color:var(--muted);
+    font-size:13px;
+    text-align:center;
+    padding:14px 0;
+  }
+  .settings-toggle{
+    background:none;
+    border:none;
+    color:#CFE1F7;
+    font-size:12.5px;
+    text-decoration:underline;
+    padding:0;
+    margin-top:8px;
+    font-family:var(--body);
+    font-weight:600;
+  }
+  .settings-panel{display:none;}
+  .settings-panel.open{display:block;}
+  .settings-panel .row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .settings-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:8px;
+  }
+  footer.note{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    padding:10px 16px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>Viikkoseuranta</h1>
+  <p id="headerSub">Matka kohti 10 000€ profiittia — 30.11.2026 mennessä</p>
+  <button class="settings-toggle" id="settingsToggle" type="button">Muokkaa lähtötilannetta ja tavoitetta</button>
+</header>
+
+<main>
+
+  <div class="card settings-panel" id="settingsPanel">
+    <h2>Lähtötilanne ja tavoite</h2>
+    <div class="row">
+      <div>
+        <label for="s_goal">Tavoite (€ profiitti)</label>
+        <input type="number" id="s_goal" min="0" step="1">
+      </div>
+      <div>
+        <label for="s_deadline">Määräaika</label>
+        <input type="date" id="s_deadline">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="s_baseDate">Lähtötilanne, pvm</label>
+        <input type="date" id="s_baseDate">
+      </div>
+      <div></div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="s_baseRevenue">Kertynyt liikevaihto tähän mennessä (€)</label>
+        <input type="number" id="s_baseRevenue" min="0" step="1">
+      </div>
+      <div>
+        <label for="s_baseProfit">Kertynyt profiitti tähän mennessä (€)</label>
+        <input type="number" id="s_baseProfit" min="0" step="1">
+      </div>
+    </div>
+    <div class="settings-actions">
+      <button class="btn-secondary" id="saveSettings" type="button">Tallenna</button>
+      <button class="btn-danger-text" id="resetAll" type="button">Nollaa kaikki data</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Tavoite: 10 000€ 30.11.2026 mennessä</h2>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-label">
+        <span><b id="progressProfit">0€</b> kertynyt</span>
+        <span id="progressPct">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Tilanne juuri nyt</h2>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="label">Kertynyt profiitti</div>
+        <div class="value" id="statProfit">0€</div>
+      </div>
+      <div class="stat">
+        <div class="label">Kertynyt liikevaihto</div>
+        <div class="value" id="statRevenue">0€</div>
+      </div>
+      <div class="stat">
+        <div class="label">Marginaali</div>
+        <div class="value" id="statMargin">0%</div>
+      </div>
+      <div class="stat">
+        <div class="label">Konversio (keikat/liidit)</div>
+        <div class="value" id="statConversion">–</div>
+      </div>
+      <div class="stat">
+        <div class="label">Tavoiteura tänään</div>
+        <div class="value" id="statTargetToday">0€</div>
+      </div>
+      <div class="stat" id="statDiffCard">
+        <div class="label">Erotus tavoiteurasta</div>
+        <div class="value" id="statDiff">0€</div>
+        <div class="sub" id="statDiffPct"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Tarvitset keskimäärin / viikko (<span id="weeksLeft">0</span> viikkoa jäljellä)</h2>
+    <div class="need-box">
+      <div class="need">
+        <div class="n" id="needLeads">0</div>
+        <div class="t">liidiä / vko</div>
+      </div>
+      <div class="need">
+        <div class="n" id="needJobs">0</div>
+        <div class="t">keikkaa / vko</div>
+      </div>
+      <div class="need">
+        <div class="n" id="needProfit">0€</div>
+        <div class="t">profiittia / vko</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Kumulatiivinen profiitti vs. tavoiteura</h2>
+    <canvas id="chart"></canvas>
+    <div class="legend">
+      <span><i class="dot actual"></i>Toteutunut</span>
+      <span><i class="dot target"></i>Tavoiteura</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Lisää viikon tiedot</h2>
+    <form class="entry-form" id="entryForm">
+      <div class="full">
+        <label for="f_date">Viikko (päivämäärä)</label>
+        <input type="date" id="f_date" required>
+      </div>
+      <div>
+        <label for="f_leads">Yhteydenotot / liidit</label>
+        <input type="number" id="f_leads" min="0" step="1" required>
+      </div>
+      <div>
+        <label for="f_jobs">Toteutuneet keikat</label>
+        <input type="number" id="f_jobs" min="0" step="1" required>
+      </div>
+      <div>
+        <label for="f_revenue">Liikevaihto (€)</label>
+        <input type="number" id="f_revenue" min="0" step="1" required>
+      </div>
+      <div>
+        <label for="f_cost">Kulut (€, vapaaehtoinen)</label>
+        <input type="number" id="f_cost" min="0" step="1" placeholder="0">
+      </div>
+      <div class="full">
+        <button type="submit" class="btn-primary">Lisää viikko</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Viikkohistoria</h2>
+    <div id="tableWrap">
+      <p class="empty-note">Ei vielä syötettyjä viikkoja.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="note">Data tallentuu vain tähän selaimeen (local storage).</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var SETTINGS_KEY = "cdh_tracker_settings_v1";
+  var ENTRIES_KEY  = "cdh_tracker_entries_v1";
+
+  var DEFAULT_SETTINGS = {
+    goal: 10000,
+    deadline: "2026-11-30",
+    baseDate: "2026-07-16",
+    baseRevenue: 2800,
+    baseProfit: 2500
+  };
+  var DEFAULT_AVG_JOB_VALUE = 94;
+  var DEFAULT_CONVERSION = 0.50;
+  var DEFAULT_MARGIN = 0.89;
+
+  function loadSettings(){
+    try{
+      var raw = localStorage.getItem(SETTINGS_KEY);
+      if(!raw) return Object.assign({}, DEFAULT_SETTINGS);
+      var parsed = JSON.parse(raw);
+      return Object.assign({}, DEFAULT_SETTINGS, parsed);
+    }catch(e){ return Object.assign({}, DEFAULT_SETTINGS); }
+  }
+  function saveSettings(s){
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+  }
+  function loadEntries(){
+    try{
+      var raw = localStorage.getItem(ENTRIES_KEY);
+      if(!raw) return [];
+      var parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    }catch(e){ return []; }
+  }
+  function saveEntries(list){
+    localStorage.setItem(ENTRIES_KEY, JSON.stringify(list));
+  }
+
+  var settings = loadSettings();
+  var entries = loadEntries();
+
+  function fmtEur(n){
+    var sign = n < 0 ? "-" : "";
+    n = Math.abs(Math.round(n));
+    return sign + n.toLocaleString("fi-FI") + "€";
+  }
+  function fmtPct(n){
+    return (Math.round(n*10)/10).toLocaleString("fi-FI") + "%";
+  }
+  function parseDate(str){
+    var p = str.split("-");
+    return new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+  }
+  function dayMs(){ return 24*60*60*1000; }
+  function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+
+  function targetAt(dateObj){
+    var base = parseDate(settings.baseDate).getTime();
+    var end = parseDate(settings.deadline).getTime();
+    var totalSpan = end - base;
+    if(totalSpan <= 0) return settings.goal;
+    var frac = clamp((dateObj.getTime() - base) / totalSpan, 0, 1);
+    return settings.baseProfit + (settings.goal - settings.baseProfit) * frac;
+  }
+
+  function computeTotals(){
+    var sortedEntries = entries.slice().sort(function(a,b){
+      return parseDate(a.date) - parseDate(b.date);
+    });
+    var totalRevenue = settings.baseRevenue;
+    var totalCost = settings.baseRevenue - settings.baseProfit;
+    var totalLeads = 0, totalJobs = 0, sumEntryRevenue = 0;
+
+    sortedEntries.forEach(function(e){
+      totalRevenue += e.revenue;
+      totalCost += (e.cost || 0);
+      totalLeads += e.leads;
+      totalJobs += e.jobs;
+      sumEntryRevenue += e.revenue;
+    });
+
+    var totalProfit = totalRevenue - totalCost;
+    var marginRate = totalRevenue > 0 ? (totalProfit/totalRevenue) : DEFAULT_MARGIN;
+    var conversionRate = totalLeads > 0 ? (totalJobs/totalLeads) : DEFAULT_CONVERSION;
+    var avgJobValue = totalJobs > 0 ? (sumEntryRevenue/totalJobs) : DEFAULT_AVG_JOB_VALUE;
+
+    return {
+      sortedEntries: sortedEntries,
+      totalRevenue: totalRevenue,
+      totalCost: totalCost,
+      totalProfit: totalProfit,
+      totalLeads: totalLeads,
+      totalJobs: totalJobs,
+      marginRate: marginRate,
+      conversionRate: conversionRate,
+      avgJobValue: avgJobValue
+    };
+  }
+
+  function render(){
+    var t = computeTotals();
+    var today = new Date();
+    var deadline = parseDate(settings.deadline);
+
+    // header sub
+    document.getElementById("headerSub").textContent =
+      "Matka kohti " + fmtEur(settings.goal) + " profiittia — " +
+      deadline.toLocaleDateString("fi-FI") + " mennessä";
+
+    // progress
+    var pct = settings.goal > 0 ? clamp(t.totalProfit/settings.goal*100, 0, 100) : 0;
+    document.getElementById("progressFill").style.width = pct + "%";
+    document.getElementById("progressProfit").textContent = fmtEur(t.totalProfit);
+    document.getElementById("progressPct").textContent = fmtPct(pct) + " tavoitteesta";
+
+    // stat cards
+    document.getElementById("statProfit").textContent = fmtEur(t.totalProfit);
+    document.getElementById("statRevenue").textContent = fmtEur(t.totalRevenue);
+    document.getElementById("statMargin").textContent = fmtPct(t.marginRate*100);
+    document.getElementById("statConversion").textContent =
+      t.totalLeads > 0 ? fmtPct(t.conversionRate*100) : "ei dataa";
+
+    var targetToday = targetAt(today);
+    document.getElementById("statTargetToday").textContent = fmtEur(targetToday);
+
+    var diff = t.totalProfit - targetToday;
+    var diffPct = targetToday !== 0 ? (diff/Math.abs(targetToday))*100 : 0;
+    var diffCard = document.getElementById("statDiffCard");
+    var diffEl = document.getElementById("statDiff");
+    diffEl.textContent = (diff >= 0 ? "+" : "") + fmtEur(diff);
+    document.getElementById("statDiffPct").textContent =
+      (diff >= 0 ? "Edellä tavoiteuraa" : "Jäljessä tavoiteuraa") + " (" + (diffPct>=0?"+":"") + fmtPct(diffPct) + ")";
+    diffCard.classList.remove("good","bad");
+    diffCard.classList.add(diff >= 0 ? "good" : "bad");
+
+    // remaining weeks & needed pace
+    var remainingMs = deadline.getTime() - today.getTime();
+    var remainingWeeks = remainingMs > 0 ? (remainingMs/dayMs()/7) : 0;
+    var remainingWeeksDisplay = remainingWeeks > 0 ? Math.max(1, Math.round(remainingWeeks)) : 0;
+    document.getElementById("weeksLeft").textContent = remainingWeeksDisplay;
+
+    var neededProfitTotal = Math.max(settings.goal - t.totalProfit, 0);
+    var neededWeeklyProfit = remainingWeeks > 0 ? neededProfitTotal/remainingWeeks : neededProfitTotal;
+    var neededWeeklyRevenue = t.marginRate > 0 ? neededWeeklyProfit/t.marginRate : neededWeeklyProfit;
+    var neededWeeklyJobs = t.avgJobValue > 0 ? neededWeeklyRevenue/t.avgJobValue : 0;
+    var neededWeeklyLeads = t.conversionRate > 0 ? neededWeeklyJobs/t.conversionRate : 0;
+
+    document.getElementById("needProfit").textContent = fmtEur(neededWeeklyProfit);
+    document.getElementById("needJobs").textContent = Math.ceil(neededWeeklyJobs);
+    document.getElementById("needLeads").textContent = Math.ceil(neededWeeklyLeads);
+
+    // table
+    renderTable(t.sortedEntries);
+
+    // chart
+    drawChart(t);
+  }
+
+  function renderTable(sortedEntries){
+    var wrap = document.getElementById("tableWrap");
+    if(sortedEntries.length === 0){
+      wrap.innerHTML = '<p class="empty-note">Ei vielä syötettyjä viikkoja.</p>';
+      return;
+    }
+    var rows = sortedEntries.slice().reverse().map(function(e){
+      var conv = e.leads > 0 ? Math.round(e.jobs/e.leads*100) + "%" : "–";
+      var profit = e.revenue - (e.cost||0);
+      return "<tr>" +
+        "<td>" + parseDate(e.date).toLocaleDateString("fi-FI") + "</td>" +
+        "<td>" + e.leads + "</td>" +
+        "<td>" + e.jobs + "</td>" +
+        "<td>" + conv + "</td>" +
+        "<td>" + fmtEur(e.revenue) + "</td>" +
+        "<td>" + fmtEur(profit) + "</td>" +
+        '<td><button class="btn-danger-text" data-del="' + e.id + '" type="button">Poista</button></td>' +
+        "</tr>";
+    }).join("");
+    wrap.innerHTML =
+      '<div style="overflow-x:auto"><table><thead><tr>' +
+      "<th>Pvm</th><th>Liidit</th><th>Keikat</th><th>Konv.</th><th>Liikevaihto</th><th>Profiitti</th><th></th>" +
+      "</tr></thead><tbody>" + rows + "</tbody></table></div>";
+
+    wrap.querySelectorAll("[data-del]").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var id = btn.getAttribute("data-del");
+        entries = entries.filter(function(e){ return e.id !== id; });
+        saveEntries(entries);
+        render();
+      });
+    });
+  }
+
+  function drawChart(t){
+    var canvas = document.getElementById("chart");
+    var dpr = window.devicePixelRatio || 1;
+    var cssWidth = canvas.clientWidth || 320;
+    var cssHeight = 220;
+    canvas.width = cssWidth * dpr;
+    canvas.height = cssHeight * dpr;
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,cssWidth,cssHeight);
+
+    var padL = 46, padR = 10, padT = 12, padB = 22;
+    var plotW = cssWidth - padL - padR;
+    var plotH = cssHeight - padT - padB;
+
+    var base = parseDate(settings.baseDate);
+    var deadline = parseDate(settings.deadline);
+    var totalSpan = deadline.getTime() - base.getTime();
+    if(totalSpan <= 0) totalSpan = dayMs();
+
+    // actual points: baseline + cumulative entries
+    var actualPoints = [{ date: base, profit: settings.baseProfit }];
+    var running = settings.baseProfit;
+    t.sortedEntries.forEach(function(e){
+      running += (e.revenue - (e.cost||0));
+      actualPoints.push({ date: parseDate(e.date), profit: running });
+    });
+
+    // target points: baseline -> deadline
+    var targetPoints = [
+      { date: base, profit: settings.baseProfit },
+      { date: deadline, profit: settings.goal }
+    ];
+
+    var maxProfit = Math.max(settings.goal, settings.baseProfit, t.totalProfit);
+    var minProfit = Math.min(0, settings.baseProfit);
+    var yMax = maxProfit * 1.08;
+    var yMin = minProfit;
+    if(yMax === yMin) yMax = yMin + 1;
+
+    function x(d){ return padL + clamp((d.getTime()-base.getTime())/totalSpan,0,1.02) * plotW; }
+    function y(v){ return padT + (1 - (v - yMin)/(yMax - yMin)) * plotH; }
+
+    // gridlines
+    ctx.strokeStyle = "#E6EBF1";
+    ctx.lineWidth = 1;
+    ctx.fillStyle = "#5A6B7B";
+    ctx.font = "11px Open Sans, sans-serif";
+    var gridSteps = 4;
+    for(var i=0;i<=gridSteps;i++){
+      var v = yMin + (yMax-yMin)*i/gridSteps;
+      var yy = y(v);
+      ctx.beginPath();
+      ctx.moveTo(padL, yy);
+      ctx.lineTo(cssWidth-padR, yy);
+      ctx.stroke();
+      ctx.fillText(Math.round(v/100)*100/1000 + "k", 2, yy+3);
+    }
+
+    // target line (dashed)
+    ctx.setLineDash([5,4]);
+    ctx.strokeStyle = "#9DAAB8";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    targetPoints.forEach(function(p,i){
+      var px = x(p.date), py = y(p.profit);
+      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // actual line
+    ctx.strokeStyle = "#0A6CE0";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    actualPoints.forEach(function(p,i){
+      var px = x(p.date), py = y(p.profit);
+      if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    });
+    ctx.stroke();
+
+    // actual dots
+    ctx.fillStyle = "#0A6CE0";
+    actualPoints.forEach(function(p){
+      ctx.beginPath();
+      ctx.arc(x(p.date), y(p.profit), 3, 0, Math.PI*2);
+      ctx.fill();
+    });
+
+    // today marker
+    var today = new Date();
+    if(today >= base && today <= deadline){
+      var tx = x(today);
+      ctx.strokeStyle = "#C23B3B";
+      ctx.setLineDash([2,3]);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(tx, padT);
+      ctx.lineTo(tx, padT+plotH);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // x-axis labels (base / today / deadline)
+    ctx.fillStyle = "#5A6B7B";
+    ctx.font = "10.5px Open Sans, sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText(base.toLocaleDateString("fi-FI",{day:"2-digit",month:"2-digit"}), padL, cssHeight-6);
+    ctx.textAlign = "right";
+    ctx.fillText(deadline.toLocaleDateString("fi-FI",{day:"2-digit",month:"2-digit"}), cssWidth-padR, cssHeight-6);
+  }
+
+  // ---- settings panel ----
+  var settingsPanel = document.getElementById("settingsPanel");
+  document.getElementById("settingsToggle").addEventListener("click", function(){
+    settingsPanel.classList.toggle("open");
+    if(settingsPanel.classList.contains("open")) fillSettingsForm();
+  });
+  function fillSettingsForm(){
+    document.getElementById("s_goal").value = settings.goal;
+    document.getElementById("s_deadline").value = settings.deadline;
+    document.getElementById("s_baseDate").value = settings.baseDate;
+    document.getElementById("s_baseRevenue").value = settings.baseRevenue;
+    document.getElementById("s_baseProfit").value = settings.baseProfit;
+  }
+  document.getElementById("saveSettings").addEventListener("click", function(){
+    var goal = parseFloat(document.getElementById("s_goal").value);
+    var deadline = document.getElementById("s_deadline").value;
+    var baseDate = document.getElementById("s_baseDate").value;
+    var baseRevenue = parseFloat(document.getElementById("s_baseRevenue").value);
+    var baseProfit = parseFloat(document.getElementById("s_baseProfit").value);
+    if(isNaN(goal) || !deadline || !baseDate || isNaN(baseRevenue) || isNaN(baseProfit)){
+      alert("Tarkista, että kaikki kentät on täytetty oikein.");
+      return;
+    }
+    settings = { goal: goal, deadline: deadline, baseDate: baseDate, baseRevenue: baseRevenue, baseProfit: baseProfit };
+    saveSettings(settings);
+    settingsPanel.classList.remove("open");
+    render();
+  });
+  document.getElementById("resetAll").addEventListener("click", function(){
+    if(!confirm("Poistetaanko kaikki syötetty viikkodata ja palautetaan oletusasetukset?")) return;
+    settings = Object.assign({}, DEFAULT_SETTINGS);
+    entries = [];
+    saveSettings(settings);
+    saveEntries(entries);
+    fillSettingsForm();
+    render();
+  });
+
+  // ---- entry form ----
+  var form = document.getElementById("entryForm");
+  document.getElementById("f_date").value = new Date().toISOString().slice(0,10);
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var date = document.getElementById("f_date").value;
+    var leads = parseInt(document.getElementById("f_leads").value, 10);
+    var jobs = parseInt(document.getElementById("f_jobs").value, 10);
+    var revenue = parseFloat(document.getElementById("f_revenue").value);
+    var costRaw = document.getElementById("f_cost").value;
+    var cost = costRaw === "" ? 0 : parseFloat(costRaw);
+
+    if(!date || isNaN(leads) || isNaN(jobs) || isNaN(revenue) || isNaN(cost)){
+      alert("Tarkista lomakkeen kentät.");
+      return;
+    }
+    if(jobs > leads){
+      if(!confirm("Keikkoja on enemmän kuin liidejä tällä viikolla. Jatketaanko silti?")) return;
+    }
+
+    entries.push({
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+      date: date, leads: leads, jobs: jobs, revenue: revenue, cost: cost
+    });
+    saveEntries(entries);
+    form.reset();
+    document.getElementById("f_date").value = new Date().toISOString().slice(0,10);
+    render();
+  });
+
+  window.addEventListener("resize", function(){ render(); });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
