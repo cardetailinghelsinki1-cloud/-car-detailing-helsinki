@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /seuranta.html
 
 Sitemap: https://www.cardetailinghelsinki.com/sitemap.xml
