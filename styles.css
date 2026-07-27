@@ -77,8 +77,9 @@ header.nav{position:sticky;top:45px;z-index:50;background:rgba(255,255,255,.88);
 header.nav .logo:hover img{transform:scale(1.15)}
 .logo .txt small{display:block;font-size:9px;letter-spacing:.16em;color:var(--muted);font-weight:600;text-transform:uppercase}
 .nav-links{display:flex;align-items:center;gap:26px}
-.nav-links a.link{font-family:var(--display);font-size:15px;font-weight:500;position:relative}
+.nav-links a.link{font-family:var(--display);font-size:15px;font-weight:500;position:relative;display:inline-block;transform-origin:center;transition:transform .18s}
 .nav-links a.link::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .2s}
+.nav-links a.link:hover{transform:scale(1.1)}
 .nav-links a.link:hover::after{width:100%}
 .nav-cta{display:flex;align-items:center;gap:12px}
 .menu-btn{display:none;background:none;border:0;cursor:pointer;padding:8px}
