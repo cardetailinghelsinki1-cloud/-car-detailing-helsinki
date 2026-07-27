@@ -189,8 +189,7 @@
         <div class="radio-group">
           <label class="radio"><input type="radio" name="penkit" value="Nahkapenkit" required><span>Nahkapenkit</span></label>
           <label class="radio"><input type="radio" name="penkit" value="Tekstiilipenkit" required><span>Tekstiilipenkit</span></label>
-          <label class="radio"><input type="radio" name="penkit" value="Muu" id="penkitMuuRadio" required><span>Muu, mikä?</span></label>
-          <input type="text" id="penkitMuu" placeholder="Kerro tarkemmin">
+          <label class="radio"><input type="radio" name="penkit" value="Penkeissä on sekä nahka- että tekstiiliverhoilua" required><span>Penkeissä on sekä nahka- että tekstiiliverhoilua</span></label>
         </div>
       </div>
       <div class="field">
@@ -234,11 +233,6 @@
   </div>
 </div></div></div></section>
 <script>
-document.querySelectorAll('input[name="penkit"]').forEach(function(r){
-  r.addEventListener('change',function(){
-    document.getElementById('penkitMuu').required=(document.getElementById('penkitMuuRadio').checked);
-  });
-});
 document.getElementById('orderForm').addEventListener('submit',function(e){
   e.preventDefault();
   var form=e.target;
@@ -249,7 +243,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   var palveluEl=document.querySelector('input[name="palvelu"]:checked');
   var palvelut=palveluEl?palveluEl.value:'';
   var penkitEl=document.querySelector('input[name="penkit"]:checked');
-  var penkit=penkitEl?(penkitEl.value==='Muu'?(g('penkitMuu')||'Muu'):penkitEl.value):'';
+  var penkit=penkitEl?penkitEl.value:'';
 
   function fallbackMailto(){
     var g2=function(id){return encodeURIComponent(document.getElementById(id).value||'');};
