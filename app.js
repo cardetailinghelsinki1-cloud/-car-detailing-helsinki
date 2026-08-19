@@ -7,33 +7,6 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBt
 /* Arvostelut: "Lataa lisää" -nappi näyttää loput kortit */
 (function(){var btn=document.getElementById('loadMoreReviews');if(!btn)return;btn.addEventListener('click',function(){var g=document.getElementById('reviewGrid');if(g)g.classList.add('show-all');btn.style.display='none';});})();
 
-/* Kampanjapalkki: täytä liikkuva rata + live-laskuri (82rentals-tyyli) */
-(function(){
-  var bar=document.querySelector('.promobar');if(!bar)return;
-  var track=bar.querySelector('.promo-track');
-  if(track){
-    var unit=track.innerHTML,n=1;
-    while((track.scrollWidth < window.innerWidth*2 || n%2!==0) && n<24){track.innerHTML+=unit;n++;}
-    track.style.animationDuration=Math.max(18,(track.scrollWidth/2)/90)+'s';
-  }
-  var WEEK=7*86400000;
-  var anchor=Date.parse(bar.getAttribute('data-deadline'))||Date.parse('2026-07-06T00:00:00');
-  function nextDl(){var k=Math.ceil((Date.now()-anchor)/WEEK);if(k<1)k=1;return anchor+k*WEEK;}  /* rullaava 7 pv: aina tuleva määräaika, uusiutuu automaattisesti */
-  var dl=nextDl();
-  function p(n){return(n<10?'0':'')+n;}
-  function set(cls,val){var e=bar.querySelectorAll(cls);for(var i=0;i<e.length;i++)e[i].textContent=val;}
-  function tick(){
-    var now=Date.now();
-    if(now>=dl)dl=nextDl();                       /* ajastin loppui -> alkaa uudet 7 päivää */
-    var diff=dl-now;if(diff<0)diff=0;
-    set('.cd-d',p(Math.floor(diff/86400000)));
-    set('.cd-h',p(Math.floor(diff%86400000/3600000)));
-    set('.cd-m',p(Math.floor(diff%3600000/60000)));
-    set('.cd-s',p(Math.floor(diff%60000/1000)));
-  }
-  tick();setInterval(tick,1000);
-})();
-
 document.querySelectorAll('.qa button').forEach(b=>{b.addEventListener('click',()=>{const qa=b.parentElement,a=qa.querySelector('.a'),open=qa.classList.contains('open');document.querySelectorAll('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('.a').style.maxHeight=null;});if(!open){qa.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}});});
 
 const reduce=false;
