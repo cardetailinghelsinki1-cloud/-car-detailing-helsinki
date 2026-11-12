@@ -7,6 +7,17 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menuBt
 /* Arvostelut: "Lataa lisää" -nappi näyttää loput kortit */
 (function(){var btn=document.getElementById('loadMoreReviews');if(!btn)return;btn.addEventListener('click',function(){var g=document.getElementById('reviewGrid');if(g)g.classList.add('show-all');btn.style.display='none';});})();
 
+/* Kausi-ilmoituspalkki: täytä liikkuva rata seamless-kiertoa varten */
+(function(){
+  var bar=document.querySelector('.promobar');if(!bar)return;
+  var track=bar.querySelector('.promo-track');
+  if(track){
+    var unit=track.innerHTML,n=1;
+    while((track.scrollWidth < window.innerWidth*2 || n%2!==0) && n<24){track.innerHTML+=unit;n++;}
+    track.style.animationDuration=Math.max(18,(track.scrollWidth/2)/90)+'s';
+  }
+})();
+
 document.querySelectorAll('.qa button').forEach(b=>{b.addEventListener('click',()=>{const qa=b.parentElement,a=qa.querySelector('.a'),open=qa.classList.contains('open');document.querySelectorAll('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('.a').style.maxHeight=null;});if(!open){qa.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}});});
 
 const reduce=false;

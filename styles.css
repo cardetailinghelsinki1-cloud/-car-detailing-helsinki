@@ -47,13 +47,25 @@ img{max-width:100%;display:block}
 .btn .arr{transition:transform .2s}
 .btn:hover .arr{transform:translateX(3px)}
 
+/* KAUSI-ILMOITUSPALKKI (liikkuva) */
+.promobar{background:#5B9BD5;overflow:hidden;font-family:var(--display);position:sticky;top:0;z-index:60}
+.promo-track{display:flex;align-items:center;gap:30px;width:max-content;animation:promoScroll 30s linear infinite}
+.promobar:hover .promo-track{animation-play-state:paused}
+.promo-group{display:flex;align-items:center;gap:16px;padding:8px 0;white-space:nowrap}
+.promo-spark{display:inline-flex;color:var(--ink)}
+.promo-spark svg{width:15px;height:15px}
+.promo-title{color:var(--ink);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:14px}
+.promo-dot{color:var(--ink);opacity:.4;font-weight:700}
+.promo-note{color:var(--ink);font-weight:500;font-size:13.5px}
+@keyframes promoScroll{to{transform:translateX(-50%)}}
+
 .topbar{background:var(--ink);color:#fff;font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.02em}
 .topbar a{display:flex;align-items:center;justify-content:center;gap:10px;padding:9px 16px;text-align:center}
 .topbar .star{color:var(--gold)}
 .topbar b{color:#7FB4FF;font-weight:700}
 
 /* NAVI */
-header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+header.nav{position:sticky;top:45px;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
 .logo{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-style:italic;letter-spacing:-.01em;font-size:18px}
 .logo img{height:52px;width:auto;transition:transform .3s cubic-bezier(.22,1,.36,1)}
