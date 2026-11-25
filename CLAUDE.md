@@ -19,3 +19,10 @@
 - Jos käytettävissä ei ole poisto-työkalua kyseiselle palvelulle, kerro käyttäjälle
   suoraan mitkä tiedostot jäivät roskaksi ja että ne pitää poistaa käsin — älä jätä
   tätä mainitsematta.
+
+# Higgsfield-generoinnit
+
+- Ennen jokaista Higgsfield-generointia (kuva, video, ääni, 3D, presetit yms.)
+  kerro käyttäjälle arvioitu kredit-kustannus ja mitä ollaan generoimassa,
+  ja odota käyttäjän vahvistusta. Älä käynnistä generointia ilman vahvistusta.
+- Tämä on pysyvä ohje.
